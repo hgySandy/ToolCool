@@ -118,7 +118,8 @@ public final class TKContants {
 		public static final int SEARCH = 1;
 		public static final int LOGIN = 2;
 		public static final int COLLECT=3;
-		public static final int MORE_SETTING=4;
+		public static final int ABOUT_SETTING=4;
+		public static final int ABOUT_US =5 ;
 	}
 
 	public static final class Key {

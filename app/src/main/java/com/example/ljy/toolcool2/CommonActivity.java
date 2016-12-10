@@ -14,8 +14,10 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.ljy.subFragment.AboutUsFragment;
 import com.example.ljy.subFragment.LoginFragment;
 import com.example.ljy.subFragment.SearchFragment;
+import com.example.ljy.subFragment.SettingFragment;
 import com.example.ljy.utils.DayNightMode;
 import com.example.ljy.utils.SPUtils;
 import com.example.ljy.utils.TKContants;
@@ -104,14 +106,18 @@ public class CommonActivity extends AppCompatActivity {
                 fragment = new LoginFragment();
                 supportActionBar.setTitle("登录");
                 break;
-//            case TKContants.Type.COLLECT:
+            case TKContants.Type.COLLECT:
 //                fragment = new CollectFragment();
 //                supportActionBar.setTitle("我的收藏");
-//                break;
-//            case TKContants.Type.MORE_SETTING:
-//                fragment = new MoreSettingFragment();
-//                supportActionBar.setTitle("更多设置");
-//                break;
+                break;
+            case TKContants.Type.ABOUT_SETTING:
+                fragment = new SettingFragment();
+                supportActionBar.setTitle("相关设置");
+                break;
+            case TKContants.Type.ABOUT_US:
+                fragment = new AboutUsFragment();
+                supportActionBar.setTitle("关于我们");
+                break;
 
             default:
                 break;

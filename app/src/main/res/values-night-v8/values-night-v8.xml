@@ -19,6 +19,7 @@
         <item name="color_week_parent_tv_daynight">@color/bg_week_parent_tv_night</item>
         <item name="bg_mine_item_daynight">@color/bg_mine_item_night</item>
         <item name="bg_mine_daynight">@color/bg_mine_night</item>
+        <item name="color_tv_title_daynight">@color/tv_title_night</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat" />

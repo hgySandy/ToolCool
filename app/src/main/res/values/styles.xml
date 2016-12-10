@@ -23,6 +23,7 @@
         <item name="color_week_parent_tv_daynight">@color/bg_week_parent_tv_day</item>
         <item name="bg_mine_item_daynight">@color/bg_mine_item_day</item>
         <item name="bg_mine_daynight">@color/bg_mine_day</item>
+        <item name="color_tv_title_daynight">@color/tv_title_day</item>
     </style>
 
 

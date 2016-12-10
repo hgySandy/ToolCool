@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity
         supportActionBar.setTitle("首页");
         //控制侧滑菜单
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawerLayout, toolbarMain, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);//设置导航栏点击事件
@@ -221,7 +222,9 @@ public class MainActivity extends AppCompatActivity
 
             Toast.makeText(MainActivity.this, "离线下载", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_setting) {
-            Toast.makeText(MainActivity.this, "相关设置", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,CommonActivity.class);
+            intent.putExtra("type",TKContants.Type.ABOUT_SETTING);
+            startActivity(intent);
 
         }
 

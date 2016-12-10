@@ -9,6 +9,9 @@
     <color name="bg_mine_item_night">#000000</color>
     <color name="bg_mine_day">#eeeeee</color>
     <color name="bg_mine_night">#333333 </color>
+    <color name="tv_title_night">#ffffff</color>
+    <color name="tv_title_day">#000000</color>
+
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
