@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_search_main"
+        android:title="@string/action_bar_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom"
+        />
+    <item
+
+        android:id="@+id/action_onlyChinese"
+        android:orderInCategory="100"
+        android:title="@string/article_onlyChinese"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_onlyEnglish"
+        android:orderInCategory="100"
+        android:title="@string/article_onlyEnglish"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_chineseAndEnglish"
+        android:orderInCategory="100"
+        android:title="@string/article_chineseAndEnglish"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_recommed"
+        android:orderInCategory="100"
+        android:title="@string/article_recommed"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_customChannel"
+        android:orderInCategory="100"
+        android:title="@string/article_customChannel"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_weekLose"
+        android:orderInCategory="100"
+        android:title="@string/article_weekLose"
+        app:showAsAction="never" />
+
+
+</menu>

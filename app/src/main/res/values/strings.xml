@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ToolCool2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--日夜间模式-->
+    <string name="nav_str_day">夜间模式</string>
+    <string name="nav_str_night">日间模式</string>
+    <!--main 菜单-->
+    <string name="article_onlyChinese">仅中文</string>
+    <string name="article_onlyEnglish">仅英文</string>
+    <string name="article_chineseAndEnglish">中英混合</string>
+    <string name="article_recommed">推荐设置</string>
+    <string name="article_customChannel">定制频道</string>
+    <string name="article_weekLose">一周拾遗</string>
+    <!--站点菜单-->
+    <string name="site_dingyue">订阅发现</string>
+    <string name="site_newCategory">新建分组</string>
+    <string name="site_sortCategory">排序分组</string>
+    <string name="site_useTips">使用提示</string>
+
+    <string name="str_tuijian_login">智能推荐，从登录开始！</string>
+    <string name="str_common_base_title">设置</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_bar_search">搜索</string>
+    <string name="str_week_setting">设置</string>
+
+
+</resources>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\ASWorkSpace\ToolCool2\lib_weibosdk\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\ASWorkSpace\ToolCool2\lib_weibosdk\src\release\shaders"/></dataSet></merger>

@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ljy.fragment.ArticleFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tab_article_indicator"
+        android:background="?attr/color_bg_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smarttab_height"
+        android:paddingBottom="1dp"
+        app:stl_defaultTabTextColor="@color/color_smarttab_text"
+        app:stl_defaultTabTextHorizontalPadding="16dp"
+        app:stl_dividerThickness="0dp"
+        app:stl_indicatorColor="@color/clolor_indicator"
+        app:stl_indicatorCornerRadius="1.5dp"
+        app:stl_indicatorInterpolation="smart"
+        app:stl_indicatorThickness="5dp"
+        app:stl_defaultTabTextSize="15dp"
+        app:stl_underlineColor="?attr/color_bg_toolbar" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_article_context"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

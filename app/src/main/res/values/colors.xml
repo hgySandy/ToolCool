@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--日夜间模式-->
+    <color name="bg_toolbar_day">#0aa284</color>
+    <color name="bg_toolbar_night">#000000</color>
+    <color name="bg_week_parent_tv_day">#0aa284</color>
+    <color name="bg_week_parent_tv_night">#eeeeee</color>
+    <color name="bg_mine_item_day">#ffffff</color>
+    <color name="bg_mine_item_night">#000000</color>
+    <color name="bg_mine_day">#eeeeee</color>
+    <color name="bg_mine_night">#333333 </color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_nav_title_selected">#0aa284</color>
+    <color name="color_nav_title">#747474</color>
+
+    <color name="clolor_indicator">#ffffff</color>
+    <color name="color_smarttab_text">#ffffff</color>
+    <color name="color_btn_tuijian_login">#0aa284</color>
+
+    <!--<color name="color"-->
+
+
+    <!--导航栏字体选中颜色-->
+
+</resources>
+

@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="?attr/bg_mine_daynight"
+    tools:context="com.example.ljy.fragment.MineFragment">
+
+    <LinearLayout
+        android:id="@+id/linear_mine_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="?attr/bg_mine_item_daynight"
+        android:padding="15dp" >
+        <!--android:background="?attr/list_daynight"-->
+
+        <ImageView
+            android:id="@+id/img_mine_head"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_user" />
+
+        <TextView
+            android:id="@+id/tv_mine_name"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="name"
+            android:textSize="@dimen/mine_titlename" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_enter" />
+    </LinearLayout>
+
+    <ListView
+        android:background="?attr/bg_mine_item_daynight"
+        android:id="@+id/list_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none" >
+    </ListView>
+</LinearLayout>

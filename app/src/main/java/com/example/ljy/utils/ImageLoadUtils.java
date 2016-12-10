@@ -1,0 +1,54 @@
+package com.example.ljy.utils;
+
+import java.io.File;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.xinbo.utils.ConnectionUtils;
+import com.xinbo.utils.UILUtils;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
+import android.widget.ImageView;
+
+public class ImageLoadUtils {
+
+	/**
+	 * 下载条件1.有缓存2.仅wifi模式下下载并且有wifi3.非仅wifi 下载模式
+	 * 
+	 * @param imgview
+	 * @param imgurl
+	 * @param isOnlyWifiLoad
+	 * 
+	 */
+	public static void displayImage(Activity activity, String imgurl, ImageView imgview) {
+		File file = ImageLoader.getInstance().getDiskCache().get(imgurl);
+		boolean hascache = (file != null);
+		boolean isWifi = ConnectionUtils.isWIFI(activity);
+		// boolean isWifi = false;
+		boolean isOnlyWifi = SPUtils.isOnlyWifiImageLoadMode(activity);
+//		Log.e("hascache", "" + hascache);
+//		Log.e("isWifi", "" + isWifi);
+//		Log.e("isOnlyWifi", "" + isOnlyWifi);
+		boolean result = false;
+		if (hascache || (isOnlyWifi && isWifi) || !isOnlyWifi) {
+			result = hascache || (isOnlyWifi && isWifi) || !isOnlyWifi;
+//			Log.e("result", "" + result);
+			UILUtils.displayImage(imgurl, imgview);
+		}
+	}
+
+	public static void displayCircleImage(Activity activity, String imgurl, ImageView imgview, boolean isOnlyWifiLoad) {
+		File file = ImageLoader.getInstance().getDiskCache().get(imgurl);
+		boolean hascache = file != null;
+		boolean isWifi = ConnectionUtils.isWIFI(activity);
+		boolean isOnlyWifi = SPUtils.isOnlyWifiImageLoadMode(activity);
+		if (hascache || (isOnlyWifi && isWifi) || !isWifi)
+			UILUtils.displayCircleImage(imgurl, imgview);
+	}
+
+}

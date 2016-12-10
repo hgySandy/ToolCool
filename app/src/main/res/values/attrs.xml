@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--toolbar的日夜间模式-->
+    <attr name="color_bg_toolbar" format="color|reference" />
+    <!--导航栏字体的日夜间模式-->
+    <attr name="str_nav_daynight" format="string|reference" />
+    <!--导航栏字体颜色的日夜间模式-->
+    <attr name="color_nav_title_daynight" format="reference|color" />
+    <!--周刊父行的字体颜色的日夜间模式-->
+    <attr name="color_week_parent_tv_daynight" format="color|reference" />
+    <!--我的界面登录行的背景颜色-->
+    <attr name="bg_mine_item_daynight" format="color|reference" />
+    <!--&lt;!&ndash;我的选项行的背景颜色的日夜间模式&ndash;&gt;-->
+    <attr name="bg_mine_daynight" format="color|reference" />
+
+
+</resources>

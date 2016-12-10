@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <item
+
+        android:id="@+id/action_dingyue"
+        android:orderInCategory="100"
+        android:title="@string/site_dingyue"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_newCategory"
+        android:orderInCategory="100"
+        android:title="@string/site_newCategory"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_sortCategory"
+        android:orderInCategory="100"
+        android:title="@string/site_sortCategory"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_useTips"
+        android:orderInCategory="100"
+        android:title="@string/site_useTips"
+        app:showAsAction="never" />
+</menu>
