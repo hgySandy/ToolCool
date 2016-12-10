@@ -44,7 +44,6 @@ public class AboutUsFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         boolean nightMode = SPUtils.isNightMode(getActivity());
         if (nightMode) {
-//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_trans_night);
             imgSettingLogo.setImageResource(R.drawable.logo_trans_night);
         }
         return view;
