@@ -22,7 +22,9 @@ public class YijianFankuiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+
+        // Inflate the lan  yout for this fragment
         View view = inflater.inflate(R.layout.fragment_yijian_fankui, container, false);
         return view;
     }
