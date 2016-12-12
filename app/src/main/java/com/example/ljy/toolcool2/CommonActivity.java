@@ -3,10 +3,10 @@ package com.example.ljy.toolcool2;
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,10 +14,12 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.ljy.fragment.UpdateLogFragment;
 import com.example.ljy.subFragment.AboutUsFragment;
 import com.example.ljy.subFragment.LoginFragment;
 import com.example.ljy.subFragment.SearchFragment;
 import com.example.ljy.subFragment.SettingFragment;
+import com.example.ljy.subFragment.ShareSettingFragment;
 import com.example.ljy.utils.DayNightMode;
 import com.example.ljy.utils.SPUtils;
 import com.example.ljy.utils.TKContants;
@@ -117,6 +119,22 @@ public class CommonActivity extends AppCompatActivity {
             case TKContants.Type.ABOUT_US:
                 fragment = new AboutUsFragment();
                 supportActionBar.setTitle("关于我们");
+                break;
+            case TKContants.Type.UPDATE_LOG:
+                fragment=new UpdateLogFragment();
+                supportActionBar.setTitle("更新日志");
+                break;
+            case TKContants.Type.SHARE_SETTING:
+                fragment=new ShareSettingFragment();
+                supportActionBar.setTitle("分享设置");
+                break;
+            case TKContants.Type.MORE_SETTING:
+                fragment=new MoreSettingFragment();
+                supportActionBar.setTitle("更多设置");
+                break;
+            case TKContants.Type.YIJIANFANKUI:
+                fragment=new YijianFankuiFragment();
+                supportActionBar.setTitle("意见反馈");
                 break;
 
             default:

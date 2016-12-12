@@ -1,10 +1,10 @@
 package com.example.ljy.utils;
 
 
+import android.content.Context;
+
 import com.xinbo.utils.HTTPUtils;
 import com.xinbo.utils.ResponseListener;
-
-import android.content.Context;
 
 public class ApiClient
 {
@@ -46,8 +46,12 @@ public class ApiClient
 		HTTPUtils.get(context, String.format(TKContants.Url.ARTICLE_DETAIL_FORMAT, articleId), listener);
 	}
 	
-	public static void getUpgradeLog(Context context, ResponseListener listener)
+	public static void getUpdataMsg(Context context, ResponseListener listener)
 	{
-		HTTPUtils.get(context, TKContants.Url.UPGRADE_LOG, listener);
+		HTTPUtils.get(context, TKContants.Url.UPDATE_MSG, listener);
+	}
+	public static void getUpdateLog(Context context,ResponseListener listener)
+	{
+		HTTPUtils.get(context,TKContants.Url.UPGRADE_LOG,listener);
 	}
 }

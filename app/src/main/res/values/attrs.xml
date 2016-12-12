@@ -13,7 +13,7 @@
     <attr name="color_week_parent_tv_daynight" format="color|reference" />
 
     <!--字体日夜间模式-->
-    <attr name="color_tv_title_daynight" format="color|reference"/>
+    <attr name="color_tv_title_daynight" format="color|reference" />
 
     <!--我的界面登录行的背景颜色-->
     <attr name="bg_mine_item_daynight" format="color|reference" />

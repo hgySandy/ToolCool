@@ -32,6 +32,6 @@
         android:id="@+id/listview_article_context"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="3dp"/>
+        android:dividerHeight="3dp" />
 
 </FrameLayout>

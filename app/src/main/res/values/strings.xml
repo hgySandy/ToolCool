@@ -28,6 +28,7 @@
     <string name="str_week_setting">设置</string>
     <string name="aboutus">\u3000推酷起步于遥远的2011年，时至今日，推酷走过了太漫长太艰难的成长之路。但我们一直在努力着，争取把那些不完美的地方做的更好。\n\u3000推酷主打智能推荐和高效订阅，是专为IT人提供的个性化阅读产品，我们聚合推荐的内容除了新闻资讯，还有如编程设计等专业内容。我们很希望，推酷能帮助到你在职业技能方面的成长。\n\u3000除了安卓APP，你也可以通过IOS客户端和网站访问推酷。如果你觉得推酷对你有帮助，欢迎给个好评推荐更多人没这对我们真的意味着很多很多。\n\u3000版本：高仿1.0\n\u3000微博：@ljy\n\u3000微信：tuicool2012\n\u3000QQ群:164644910</string>
     <string name="aboutusurl">http://www.tuicool.com</string>
+    <string name="fankui_content">使用说明，如果程序有闪退或者需要截图说明问题，可以发邮件到biz@tuicool.com。您的吐槽和鼓励都会帮助我们更好的成长。</string>
 
 
 </resources>

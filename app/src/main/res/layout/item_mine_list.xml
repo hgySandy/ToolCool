@@ -1,36 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:gravity="center_vertical"
-    >
+    android:gravity="center_vertical">
     <!--android:background="?attr/list_daynight"-->
 
 
-<ImageView 
-    android:id="@+id/img_item_mine_setting"
-    android:layout_width="30dp"
-    android:layout_height="30dp"
-    android:layout_margin="5dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:src="@drawable/ic_launcher"
-    android:layout_weight="0"
-    />
-<TextView 
-    android:id="@+id/tv_item_mine_content"
-    android:layout_weight="0"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="单位"
-    android:textSize="@dimen/mine_titlename_sub"
-    android:layout_margin="3dp"
-    />
-<TextView 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    />
+    <ImageView
+        android:id="@+id/img_item_mine_setting"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_launcher"
+        android:layout_weight="0" />
+
+    <TextView
+        android:id="@+id/tv_item_mine_content"
+        android:layout_weight="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="单位"
+        android:textSize="@dimen/mine_titlename_sub"
+        android:layout_margin="3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
 </LinearLayout>

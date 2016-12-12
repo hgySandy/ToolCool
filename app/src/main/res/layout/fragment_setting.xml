@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context="com.example.ljy.subFragment.SettingFragment">
-    <!--清除图片缓存-->
+
 
     <com.andexert.library.RippleView
         android:id="@+id/rv_setting_clearcache"

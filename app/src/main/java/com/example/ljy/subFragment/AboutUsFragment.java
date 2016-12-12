@@ -1,8 +1,8 @@
 package com.example.ljy.subFragment;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -57,6 +57,9 @@ public class AboutUsFragment extends Fragment {
 
     @OnClick(R.id.tv_abouts_url)
     public void onClick() {
-        //TODO 设置跳转
+        //打开外部浏览器
+        Uri uri=Uri.parse(tvAboutsUrl.getText().toString());
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }

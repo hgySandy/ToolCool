@@ -1,2 +1,2 @@
-include ':app', ':lib_weibosdk'
+include ':app'
 include ':lib_yuchen0802_supportBmob'

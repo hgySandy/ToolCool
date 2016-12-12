@@ -1,19 +1,13 @@
 package com.example.ljy.utils;
 
-import java.io.File;
+import android.app.Activity;
+import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xinbo.utils.ConnectionUtils;
 import com.xinbo.utils.UILUtils;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
-import android.widget.ImageView;
+import java.io.File;
 
 public class ImageLoadUtils {
 

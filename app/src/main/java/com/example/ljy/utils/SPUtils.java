@@ -2,8 +2,6 @@ package com.example.ljy.utils;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 public class SPUtils {
 

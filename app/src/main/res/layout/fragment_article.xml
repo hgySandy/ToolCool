@@ -6,8 +6,7 @@
     tools:context="com.example.ljy.fragment.ArticleFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.ogaclejapan.smarttablayout.SmartTabLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.ogaclejapan.smarttablayout.SmartTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/tab_article_indicator"
         android:background="?attr/color_bg_toolbar"
         android:layout_width="match_parent"

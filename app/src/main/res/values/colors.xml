@@ -8,7 +8,7 @@
     <color name="bg_mine_item_day">#ffffff</color>
     <color name="bg_mine_item_night">#000000</color>
     <color name="bg_mine_day">#eeeeee</color>
-    <color name="bg_mine_night">#333333 </color>
+    <color name="bg_mine_night">#333333</color>
     <color name="tv_title_night">#ffffff</color>
     <color name="tv_title_day">#000000</color>
 
@@ -22,6 +22,8 @@
     <color name="clolor_indicator">#ffffff</color>
     <color name="color_smarttab_text">#ffffff</color>
     <color name="color_btn_tuijian_login">#0aa284</color>
+
+    <color name="bg_line">#dddddd</color>
 
     <!--<color name="color"-->
 

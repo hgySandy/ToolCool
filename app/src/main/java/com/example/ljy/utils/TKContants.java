@@ -2,9 +2,6 @@ package com.example.ljy.utils;
 
 import com.example.ljy.toolcool2.R;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public final class TKContants {
 	public static final class Url {
@@ -32,6 +29,7 @@ public final class TKContants {
 		public static final String ARTICLE_DETAIL_FORMAT = HOST + "/api/articles/%s.json?need_image_meta=1&type=1";
 
 		public static final String START_PAGES = HOST + "/api/home/start_pages.json?type=0";
+		public static final String UPDATE_MSG=HOST+"/api/home/upgrade_info.json?week=1&&id=com.tuicool.activity";
 		public static final String UPGRADE_LOG = HOST + "/api/home/upgrade_logs.json";
 		public static final String WEBSITE = HOST + "/api/sites/my_with_dirs.json";
 		public static final String WEBSITE_DETAIL_FORMAT = HOST + "/api/sites/%s.json?pn=0&size=30&is_pad=1";
@@ -120,6 +118,10 @@ public final class TKContants {
 		public static final int COLLECT=3;
 		public static final int ABOUT_SETTING=4;
 		public static final int ABOUT_US =5 ;
+		public static final int UPDATE_LOG = 6;
+		public static final int  SHARE_SETTING=7;
+		public static final int  MORE_SETTING=8;
+		public static final int YIJIANFANKUI=9;
 	}
 
 	public static final class Key {

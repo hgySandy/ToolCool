@@ -2,11 +2,8 @@ package com.example.ljy.fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,19 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ljy.model.AccessTokenKeeper;
-import com.example.ljy.toolcool2.CommonActivity;
 import com.example.ljy.toolcool2.R;
-import com.example.ljy.utils.ImageLoadUtils;
-import com.example.ljy.utils.SPUtils;
 import com.example.ljy.utils.TKContants;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.net.RequestListener;
-import com.sina.weibo.sdk.openapi.UsersAPI;
-import com.sina.weibo.sdk.openapi.legacy.AccountAPI;
-import com.sina.weibo.sdk.openapi.models.User;
-import com.xinbo.utils.UILUtils;
 import com.zhy.adapter.abslistview.CommonAdapter;
 import com.zhy.adapter.abslistview.ViewHolder;
 
@@ -60,10 +46,6 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private List<String> itemnames = new ArrayList<>();
     private Unbinder unbinder;
-    private Oauth2AccessToken mAccessToken;
-    private UsersAPI mUsersAPI;
-    private String mUIDstr;
-
     public MineFragment() {
         // Required empty public constructor
     }
@@ -78,29 +60,6 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initData() {
-        //获取登录的Token信息
-        mAccessToken = AccessTokenKeeper.readAccessToken(getActivity());
-        mUIDstr = mAccessToken.getUid();
-//        String loginImageUrl = SPUtils.getLoginImageUrl(getActivity());
-        //如果本地有uid信息：如果有保存本地图片则显示本地图片，没有的话使用用户信息接口获取图片
-        if (!mUIDstr.equals("")) {
-//            if (loginImageUrl == null) {
-                //获取用户信息接口
-                mUsersAPI = new UsersAPI(getActivity(), TKContants.WBCONANTS.APP_KEY, mAccessToken);
-                //获取用户uid
-                long uid = Long.parseLong(mUIDstr);
-            Log.e("asefsdf","11");
-                //请求数据在mlistener回调方法内处理数据
-            mUsersAPI.show(uid, mListener);
-
-//
-//            } else {
-//                UILUtils.displayImage(loginImageUrl, imgMineHead);
-//            }
-
-        }
-
-
     }
 
     @Override
@@ -140,38 +99,11 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
 
     }
 
-    private RequestListener mListener = new RequestListener() {
-        @Override
-        public void onComplete(String response) {
-            if (!TextUtils.isEmpty(response)) {
-                // 调用 User#parse 将JSON串解析成User对象
-                User user = User.parse(response);
-                Log.e("asefsdf","11");
-                //保存图片路径
-                String profile_image_url = user.profile_image_url;
-                UILUtils.displayImage(profile_image_url, imgMineHead);
-                SPUtils.saveLoginImageUrl(getActivity(), profile_image_url);
-                UILUtils.displayImage(profile_image_url, imgMineHead);
-                //保存名字
-//                user.name
-            }
-        }
 
-        @Override
-        public void onWeiboException(WeiboException e) {
-
-        }
-    };
 
 
     @OnClick(R.id.linear_mine_login)
     public void onClick() {
-        if (mUIDstr.equals("")) {
-            //跳转登录界面
-            Intent intent = new Intent(getActivity(), CommonActivity.class);
-            intent.putExtra("type", TKContants.Type.LOGIN);
-            startActivity(intent);
-        }
 
     }
 
