@@ -10,15 +10,13 @@ public final class TKContants {
 				+ "/api/articles/hot.json?size=30&lang=-1&cid=%s&is_pad=1";
 
 		public static final String HOT = String.format(ARTICLE_URL_FORMAT, "0");
-		public static final String RECOMMEND = "";
 		public static final String TECHNOLOGY = String.format(ARTICLE_URL_FORMAT, "101000000");
 		public static final String ENTREPRENEURSHIP = String.format(ARTICLE_URL_FORMAT, "101040000");
 		public static final String DIGITAL = String.format(ARTICLE_URL_FORMAT, "101050000");
 		public static final String TECHNIQUE = String.format(ARTICLE_URL_FORMAT, "20");
 		public static final String DESIGN = String.format(ARTICLE_URL_FORMAT, "108000000");
 		public static final String MARKETING = String.format(ARTICLE_URL_FORMAT, "114000000");
-
-		public static final String[] CATEGORYS = { HOT, RECOMMEND, TECHNOLOGY, ENTREPRENEURSHIP, DIGITAL, TECHNIQUE,
+		public static final String[] CATEGORYS = { HOT, MARKETING, TECHNOLOGY, ENTREPRENEURSHIP, DIGITAL, TECHNIQUE,
 				DESIGN, MARKETING };
 		public static final String SEARCH_ARTICLE = HOST + "/api/articles/search.json?lang=1&pn=0&kw=";
 		public static final String SEARCH_TOPIC = HOST + "/api/topics/search.json?kw=";
@@ -34,6 +32,7 @@ public final class TKContants {
 		public static final String WEBSITE = HOST + "/api/sites/my_with_dirs.json";
 		public static final String WEBSITE_DETAIL_FORMAT = HOST + "/api/sites/%s.json?pn=0&size=30&is_pad=1";
 		public static final String TOPIC = HOST + "/api/topics/my_with_dirs.json";
+
 		public static final String TOPIC_DETAIL_FORMAT = HOST
 				+ "/api/topics/%s.json?pn=0&lang=-1&st=0&size=30&is_pad=1";
 		/*
@@ -122,6 +121,7 @@ public final class TKContants {
 		public static final int  SHARE_SETTING=7;
 		public static final int  MORE_SETTING=8;
 		public static final int YIJIANFANKUI=9;
+		public static final int ACCOUNT_INFO =10;
 	}
 
 	public static final class Key {

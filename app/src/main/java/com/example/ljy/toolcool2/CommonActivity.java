@@ -16,10 +16,13 @@ import android.view.WindowManager;
 
 import com.example.ljy.fragment.UpdateLogFragment;
 import com.example.ljy.subFragment.AboutUsFragment;
+import com.example.ljy.subFragment.AccountFragment;
 import com.example.ljy.subFragment.LoginFragment;
+import com.example.ljy.subFragment.MoreSettingFragment;
 import com.example.ljy.subFragment.SearchFragment;
 import com.example.ljy.subFragment.SettingFragment;
 import com.example.ljy.subFragment.ShareSettingFragment;
+import com.example.ljy.subFragment.YijianFankuiFragment;
 import com.example.ljy.utils.DayNightMode;
 import com.example.ljy.utils.SPUtils;
 import com.example.ljy.utils.TKContants;
@@ -36,9 +39,9 @@ public class CommonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//         日夜间模式初始化必须放在oncreat之前
+        //日夜间模式初始化必须放在oncreat之前
         DayNightMode.initDayNightMode(this);
-//         Log.e("CommonActivity", "onCreate");
+        //Log.e("CommonActivity", "onCreate");
         setContentView(R.layout.activity_common);
         initUI();
     }
@@ -135,6 +138,11 @@ public class CommonActivity extends AppCompatActivity {
             case TKContants.Type.YIJIANFANKUI:
                 fragment=new YijianFankuiFragment();
                 supportActionBar.setTitle("意见反馈");
+                break;
+            case TKContants.Type.ACCOUNT_INFO:
+                fragment=new AccountFragment();
+
+                supportActionBar.setTitle("账号信息");
                 break;
 
             default:

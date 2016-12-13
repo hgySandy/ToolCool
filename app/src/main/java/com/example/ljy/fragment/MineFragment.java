@@ -2,22 +2,28 @@ package com.example.ljy.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ljy.toolcool2.CommonActivity;
+import com.example.ljy.toolcool2.MainActivity;
 import com.example.ljy.toolcool2.R;
 import com.example.ljy.utils.TKContants;
+import com.xinbo.utils.UILUtils;
 import com.zhy.adapter.abslistview.CommonAdapter;
 import com.zhy.adapter.abslistview.ViewHolder;
 
@@ -28,6 +34,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformDb;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.sina.weibo.SinaWeibo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +56,9 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private List<String> itemnames = new ArrayList<>();
     private Unbinder unbinder;
+    private Platform weibo;
+    private String token;
+
     public MineFragment() {
         // Required empty public constructor
     }
@@ -60,6 +73,20 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initData() {
+        initWeibo();
+    }
+
+    private void initWeibo() {
+
+        weibo = ShareSDK.getPlatform(getContext(), SinaWeibo.NAME);
+        token = weibo.getDb().getToken();
+        if (!token.equals("")) {
+            PlatformDb accountinfo = weibo.getDb();
+            String userName = accountinfo.getUserName();
+            String userIcon = accountinfo.getUserIcon();
+            UILUtils.displayImage(userIcon, imgMineHead);
+            tvMineName.setText(userName);
+        }
     }
 
     @Override
@@ -74,12 +101,7 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
         unbinder.unbind();
     }
 
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // 清楚之前的menu
-        menu.clear();
-        // 设置fragment菜单
-        super.onCreateOptionsMenu(menu, inflater);
-    }
+
 
     private void initUI(View view) {
         unbinder = ButterKnife.bind(this, view);
@@ -100,10 +122,16 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
 
-
-
     @OnClick(R.id.linear_mine_login)
     public void onClick() {
+        Intent intent = new Intent(getActivity(), CommonActivity.class);
+        if (!token.equals("")) {
+            intent.putExtra("type", TKContants.Type.ACCOUNT_INFO);
+        } else {
+            intent.putExtra("type", TKContants.Type.LOGIN);
+        }
+        startActivity(intent);
+
 
     }
 
@@ -142,5 +170,27 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
         }
 
     }
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // 清楚之前的menu
+        menu.clear();
+        if (!token.equals("")){
+            getActivity().getMenuInflater().inflate(R.menu.menu_mine, menu);
+        }
+        // 设置fragment菜单
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId){
+            case R.id.action_zhuxiao:
+                weibo.removeAccount();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
+    }
 }

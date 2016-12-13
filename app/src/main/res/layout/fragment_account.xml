@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="14dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.example.ljy.subFragment.AccountFragment">
+    <LinearLayout
+        android:padding="3dp"
+        android:gravity="center_vertical"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+            android:layout_marginLeft="10dp"
+            android:text="头像"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="7dp"
+            android:id="@+id/img_account_head"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+
+            android:text="用户名"
+            android:layout_marginLeft="13dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_account_name"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:text="点击关联"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+
+            android:text="微博"
+            android:layout_marginLeft="13dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_accout_weibo"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:text="点击关联"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+            android:text="QQ"
+            android:layout_marginLeft="13dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:text="点击关联"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+            android:text="微信"
+            android:layout_marginLeft="13dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:text="点击关联"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+            android:text="登录邮箱"
+            android:layout_marginLeft="13dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:text="点击设置"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="?attr/bg_mine_item_daynight"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="?attr/color_tv_title_daynight"
+            android:text="密码"
+            android:layout_marginLeft="13dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:text="未设置"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

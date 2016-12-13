@@ -1,4 +1,4 @@
-package com.example.ljy.toolcool2;
+package com.example.ljy.subFragment;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ljy.toolcool2.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class YijianFankuiFragment extends Fragment {
+public class MoreSettingFragment extends Fragment {
 
 
-    public YijianFankuiFragment() {
+    public MoreSettingFragment() {
         // Required empty public constructor
     }
 
@@ -22,10 +24,10 @@ public class YijianFankuiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_more_setting, container, false);
 
 
-        // Inflate the lan  yout for this fragment
-        View view = inflater.inflate(R.layout.fragment_yijian_fankui, container, false);
         return view;
     }
 

@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,6 +44,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("ArticleFragment","onCreate");
         // 设置toolbar显示当前fragment的菜单
         setHasOptionsMenu(true);
     }
@@ -49,6 +52,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.e("ArticleFragment","onCreateView");
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_article, null);
             unbinder = ButterKnife.bind(this, view);
@@ -60,6 +64,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.e("ArticleFragment","onDestroy");
         unbinder.unbind();
     }
 
@@ -72,8 +77,8 @@ public class ArticleFragment extends Fragment {
 
 
     }
-    //用fragmentStatePagerAdapter 适用5个及以上的fragment,保存前后一个。
-    private final class MyPagerAdapter extends FragmentStatePagerAdapter {
+    //用fragmentStatePagerAdapter 适用5个及以上的fragment,保存前后一个以及自己三个对象，超出的话会destroy。
+    private final class MyPagerAdapter extends FragmentPagerAdapter {
         public CharSequence getPageTitle(int position) {
             return title[position];
         }
@@ -90,7 +95,9 @@ public class ArticleFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
+            Log.e("Fragment",""+position);
             ArticleContextFragment articleContextFragment=new ArticleContextFragment();
+            Log.e("articleContextFragment",articleContextFragment.toString());
             Bundle args = new Bundle();
             args.putInt("position", position);
             articleContextFragment.setArguments(args);

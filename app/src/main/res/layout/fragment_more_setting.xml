@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="14dp"
-    tools:context="com.example.ljy.toolcool2.MoreSettingFragment">
+    tools:context="com.example.ljy.toolcool2.com.example.ljy.subFragment.MoreSettingFragment">
 
     <LinearLayout
         android:padding="5dp"
