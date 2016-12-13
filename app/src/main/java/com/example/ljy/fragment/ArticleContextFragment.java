@@ -128,6 +128,8 @@ public class ArticleContextFragment extends Fragment {
 //                    Log.e("onResponse", "" + tabposition);
 //                    dataAdapter.notifyDataSetChanged();
                 } else if (tabposition == 1) {
+
+
 //                    SearchSiteBean parseJSON = GsonUtils.parseJSON(s, SearchSiteBean.class);
 //                    searchTopicData = parseJSON.getTopics();
 //
