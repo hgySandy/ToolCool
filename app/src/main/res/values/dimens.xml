@@ -9,4 +9,6 @@
     <dimen name="smarttab_height">30sp</dimen>
     <dimen name="mine_titlename">25sp</dimen>
     <dimen name="mine_titlename_sub">20sp</dimen>
+    <dimen name="size_title">20sp</dimen>
+    <dimen name="size_subtitle">15sp</dimen>
 </resources>

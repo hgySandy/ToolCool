@@ -57,7 +57,10 @@ public class SiteFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder!=null){
+            unbinder.unbind();
+
+        }
     }
 
     /*****

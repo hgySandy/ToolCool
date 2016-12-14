@@ -2,6 +2,8 @@ package com.example.ljy.toolcool2;
 
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,9 +16,11 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.ljy.fragment.ArticleDetailFragment;
 import com.example.ljy.fragment.UpdateLogFragment;
 import com.example.ljy.subFragment.AboutUsFragment;
 import com.example.ljy.subFragment.AccountFragment;
+import com.example.ljy.subFragment.CollectFragment;
 import com.example.ljy.subFragment.LoginFragment;
 import com.example.ljy.subFragment.MoreSettingFragment;
 import com.example.ljy.subFragment.SearchFragment;
@@ -26,6 +30,9 @@ import com.example.ljy.subFragment.YijianFankuiFragment;
 import com.example.ljy.utils.DayNightMode;
 import com.example.ljy.utils.SPUtils;
 import com.example.ljy.utils.TKContants;
+import com.github.amlcurran.showcaseview.ShowcaseDrawer;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public class CommonActivity extends AppCompatActivity {
@@ -89,17 +96,18 @@ public class CommonActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (type) {
             case TKContants.Type.DETAIL_ARTICL_FRAGMENT:
-//                fragment = new ArticleDetailFragment();
-//                // 新手引导
-//                boolean isFirstToDetail = SPUtils.isFirstToDetail(CommonActivity.this);
-//                if (isFirstToDetail) {
-//                    new ShowcaseView.Builder(this).setTarget(new ViewTarget(R.id.view_caseview, this))
-//                            .setStyle(com.github.amlcurran.showcaseview.R.style.ShowcaseButton)
-//                            .setContentTitle("点击更多可以添加字体，添加待读等.").build();
-//                    supportActionBar.setTitle("详情");
-//                    SPUtils.setNoFistToDetail(CommonActivity.this);
-//
-//                }
+                fragment = new ArticleDetailFragment();
+                supportActionBar.setTitle("");
+                // 新手引导
+                boolean isFirstToDetail = SPUtils.isFirstToDetail(CommonActivity.this);
+                if (isFirstToDetail) {
+                    new ShowcaseView.Builder(this).setTarget(new ViewTarget(R.id.view_caseview, this))
+                            .setStyle(com.github.amlcurran.showcaseview.R.style.ShowcaseButton)
+                            .setContentTitle("点击更多可以添加字体，添加待读等.").build();
+                    supportActionBar.setTitle("详情");
+                    SPUtils.setNoFistToDetail(CommonActivity.this);
+
+                }
 
                 break;
             case TKContants.Type.SEARCH:
@@ -112,8 +120,8 @@ public class CommonActivity extends AppCompatActivity {
                 supportActionBar.setTitle("登录");
                 break;
             case TKContants.Type.COLLECT:
-//                fragment = new CollectFragment();
-//                supportActionBar.setTitle("我的收藏");
+                fragment = new CollectFragment();
+                supportActionBar.setTitle("我的收藏");
                 break;
             case TKContants.Type.ABOUT_SETTING:
                 fragment = new SettingFragment();
@@ -186,48 +194,4 @@ public class CommonActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-//
-//    class MyShowcaseDrawer implements ShowcaseDrawer {
-//
-//        @Override
-//        public void setShowcaseColour(int color) {
-//
-//        }
-//
-//        @Override
-//        public void drawShowcase(Bitmap buffer, float x, float y, float scaleMultiplier) {
-//
-//        }
-//
-//        @Override
-//        public int getShowcaseWidth() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public int getShowcaseHeight() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public float getBlockedRadius() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public void setBackgroundColour(int backgroundColor) {
-//
-//        }
-//
-//        @Override
-//        public void erase(Bitmap bitmapBuffer) {
-//
-//        }
-//
-//        @Override
-//        public void drawToCanvas(Canvas canvas, Bitmap bitmapBuffer) {
-//
-//        }
-//
-//    }
 }

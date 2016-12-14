@@ -18,11 +18,15 @@ import com.andexert.library.RippleView;
 import com.android.volley.VolleyError;
 import com.example.ljy.model.ArticleContextBean;
 import com.example.ljy.model.ArticleContextBean.ArticlesBean;
-import com.example.ljy.model.SearchSiteBean.TopicsBean;
+import com.example.ljy.model.SearchSiteBean;
+import com.example.ljy.model.SearchSiteBean.ItemsBean;
+import com.example.ljy.model.SearchtopicBean;
+import com.example.ljy.model.SearchtopicBean.TopicsBean;
 import com.example.ljy.toolcool2.CommonActivity;
 import com.example.ljy.toolcool2.R;
 import com.example.ljy.utils.ApiClient;
 import com.example.ljy.utils.ImageLoadUtils;
+import com.example.ljy.utils.SQLUtils;
 import com.example.ljy.utils.TKContants;
 import com.xinbo.utils.GsonUtils;
 import com.xinbo.utils.ResponseListener;
@@ -61,36 +65,22 @@ public class ArticleContextFragment extends Fragment {
 
 
     private ArticleDataAdapter articleDataAdapter;
-    private SiteDataAdapter siteDataAdapter;
+    private TopicsAdapter topicsAdapter;
+    private SitesAdapter sitesAdapter;
     private List<ArticlesBean> articles = new ArrayList<>();
-    private List<TopicsBean> sites = new ArrayList<>();
-    //    private DataAdapter dataAdapter;
-//    private List<Article> articles = new ArrayList<Article>();
-//    private List<Item> searchsiteData = new ArrayList<>();
-//    private List<Topic> searchTopicData = new ArrayList<>();
-
-    //    private int tabposition;
-//    private LinearLayout linearLayout;
-//    private Button button;
-//    private String searchcontext;
-//    private String collect;
-//    private ListView listView;
+    private List<TopicsBean> searchTopics = new ArrayList<>();
+    private List<ItemsBean> searchSites = new ArrayList<>();
     View view;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        Log.e("ArticleContextFragment","onCreateView");
-        //获取参数
         initBundleArg();
-        //初始化UI
         if (view == null) {
-//            Log.e("ArticleContextFragment", "第一次onCreateView");
             view = inflater.inflate(R.layout.fragment_article_context, container, false);
             unbinder = ButterKnife.bind(this, view);
             initUI();
-//        初始化数据
             if (searchcontext != null) {//搜索界面初始化数据
                 initSearchData();
             } else {
@@ -100,12 +90,25 @@ public class ArticleContextFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (collect!=null)
+        initCollect();
+
+    }
 
     private void initUI() {
-        if (searchcontext!=null&&tabposition!=0){
-            siteDataAdapter = new SiteDataAdapter(getActivity(), R.layout.item_search_result, sites);
-            listviewArticleContext.setAdapter(siteDataAdapter);
-        }else {
+        if (searchcontext != null && tabposition != 0) {
+            if (tabposition == 1) {//主题
+                topicsAdapter = new TopicsAdapter(getActivity(), R.layout.item_search_result, searchTopics);
+                listviewArticleContext.setAdapter(topicsAdapter);
+            }
+            else {//站点
+                sitesAdapter = new SitesAdapter(getActivity(), R.layout.item_search_result, searchSites);
+                listviewArticleContext.setAdapter(sitesAdapter);
+            }
+        } else {//文章
             articleDataAdapter = new ArticleDataAdapter(getActivity(), R.layout.item_list_article_context, articles);
             listviewArticleContext.setAdapter(articleDataAdapter);
         }
@@ -123,17 +126,15 @@ public class ArticleContextFragment extends Fragment {
             @Override
             public void onResponse(String s) {
                 if (tabposition == 2) {
-//                    SearchSiteDate searchData = GsonUtils.parseJSON(s, SearchSiteDate.class);
-//                    searchsiteData = searchData.getItems();
-//                    Log.e("onResponse", "" + tabposition);
-//                    dataAdapter.notifyDataSetChanged();
+                    SearchSiteBean searchData = GsonUtils.parseJSON(s, SearchSiteBean.class);
+                    searchSites.clear();
+                    searchSites.addAll(searchData.getItems());
+                    sitesAdapter.notifyDataSetChanged();
                 } else if (tabposition == 1) {
-
-
-//                    SearchSiteBean parseJSON = GsonUtils.parseJSON(s, SearchSiteBean.class);
-//                    searchTopicData = parseJSON.getTopics();
-//
-//                    dataAdapter.notifyDataSetChanged();
+                    SearchtopicBean parseJSON = GsonUtils.parseJSON(s, SearchtopicBean.class);
+                    searchTopics.clear();
+                    searchTopics.addAll(parseJSON.getTopics());
+                    topicsAdapter.notifyDataSetChanged();
                 } else {
                     ArticleContextBean articleTuijian = GsonUtils.parseJSON(s, ArticleContextBean.class);
                     articles.clear();
@@ -156,12 +157,11 @@ public class ArticleContextFragment extends Fragment {
 
 
     private void initData() {
-//        if (collect != null) {
-//            articles = SQLUtils.queryCollected();
-//            dataAdapter.notifyDataSetChanged();
-//            return;
-//
-//        }
+        if (collect != null) {
+            initCollect();
+            return;
+
+        }
         /**判断是否登录再确定要不要加载Hot数据****/
         Platform weibo = ShareSDK.getPlatform(getContext(), SinaWeibo.NAME);
         String token = weibo.getDb().getToken();
@@ -186,6 +186,14 @@ public class ArticleContextFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void initCollect() {
+        articles.clear();
+        articles.addAll(SQLUtils.queryCollected());
+        //用下面这句取代上面两句会有问题
+        //articles = SQLUtils.queryCollected();
+        articleDataAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.btn_tuijian_login)
@@ -217,19 +225,18 @@ public class ArticleContextFragment extends Fragment {
                 @Override
                 public void onComplete(RippleView rippleView) {
                     //todo 跳转详情页面
-//                    Intent intent = new Intent(getActivity(), CommonActivity.class);
-//                    intent.putExtra("collectarticle", articles.get(position));
-//                    intent.putExtra("type", TKContants.Type.DETAIL_ARTICL_FRAGMENT);
-//                    startActivity(intent);
-//                    Log.e("convert", "sdfsd");
+                    Intent intent = new Intent(getActivity(), CommonActivity.class);
+                    intent.putExtra("collectarticle", articles.get(position));
+                    intent.putExtra("type", TKContants.Type.DETAIL_ARTICL_FRAGMENT);
+                    startActivity(intent);
                 }
             });
         }
     }
 
-    private class SiteDataAdapter extends CommonAdapter<TopicsBean> {
+    private class TopicsAdapter extends CommonAdapter<TopicsBean> {
 
-        public SiteDataAdapter(Context context, int layoutId, List<TopicsBean> datas) {
+        public TopicsAdapter(Context context, int layoutId, List<TopicsBean> datas) {
             super(context, layoutId, datas);
         }
 
@@ -237,79 +244,24 @@ public class ArticleContextFragment extends Fragment {
         protected void convert(ViewHolder viewHolder, TopicsBean item, int position) {
             viewHolder.setText(R.id.tv_search_result_site_name, item.getName());
             ImageView img = viewHolder.getView(R.id.img_search_result_site_head);
-            UILUtils.displayImage(item.getImage(), img);
+            UILUtils.displayCircleImage(item.getImage(), img);
         }
     }
 
+    private class SitesAdapter extends CommonAdapter<ItemsBean> {
 
-//    private class DataAdapter extends BaseAdapter {
-//
-//        @Override
-//        public int getCount() {
-//            if (searchcontext != null && tabposition != 0) {
-//                if (tabposition == 1) {
-//                    return searchTopicData.size();
-//
-//                } else {
-//
-//                    return searchsiteData.size();
-//                }
-//            }
-//
-//            return articles.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return null;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return 0;
-//        }
-//
-//        @Override
-//        public View getView(final int position, View convertView, ViewGroup parent) {
-//
-//            View view = null;
-//            Holder holder = null;
-//            // 搜索
-//            if (searchcontext != null && tabposition != 0) {
-//                // 查找布局转化优化
-//                if (convertView != null) {
-//                    view = convertView;
-//                    holder = (Holder) view.getTag();
-//                } else {
-//                    view = getActivity().getLayoutInflater().inflate(R.layout.item_search_result, null);
-//                    TextView title = (TextView) view.findViewById(R.id.tv_search_result_site_name);
-//                    ImageView img_head = (ImageView) view.findViewById(R.id.img_search_result_site_head);
-//                    holder = new Holder(title, img_head);
-//                    view.setTag(holder);
-//
-//                }
-//                String title = null;
-//                String imgurl = null;
-//                if (tabposition == 1) {
-//                    title = searchTopicData.get(position).getName();
-//                    imgurl = searchTopicData.get(position).getImage();
-//
-//                } else {
-//
-//                    title = searchsiteData.get(position).getName();
-//                    imgurl = searchsiteData.get(position).getImage();
-//                }
-//
-//                holder.title.setText(title);
-//                ImageLoadUtils.displayImage(getActivity(), imgurl, holder.img);
-//                return view;
-//            }
-//
-//
-//
-//        }
-//
-//    }
+        public SitesAdapter(Context context, int layoutId, List<ItemsBean> datas) {
+            super(context, layoutId, datas);
+        }
+
+        @Override
+        protected void convert(ViewHolder viewHolder, ItemsBean item, int position) {
+            viewHolder.setText(R.id.tv_search_result_site_name, item.getName());
+            ImageView img = viewHolder.getView(R.id.img_search_result_site_head);
+            UILUtils.displayCircleImage(item.getImage(), img);
+        }
+    }
+
 
     @Override
     public void onDestroyView() {
@@ -320,8 +272,11 @@ public class ArticleContextFragment extends Fragment {
 
     @Override
     public void onDestroy() {
+        if (unbinder!=null){
+            unbinder.unbind();
+
+        }
         super.onDestroy();
-        unbinder.unbind();
 //        Log.e("ArticleContextFragment","onDestroy"+tabposition);
     }
 }

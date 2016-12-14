@@ -1,5 +1,11 @@
 package com.example.ljy.model;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -115,8 +121,9 @@ public class ArticleContextBean {
             this.seo = seo;
         }
     }
-
-    public static class ArticlesBean {
+    @Table(name="like")
+    public static class ArticlesBean  extends Model implements Serializable,Cloneable{
+        private static final long serialVersionUID = -881433050769321127L;
         /**
          * id : 6zQ7Rf3
          * title : 如果有快到窒息的网速，你会用在哪些地方？
@@ -130,24 +137,47 @@ public class ArticleContextBean {
          * st : 0
          * go : 0
          */
-
+        @Column(name="articleurl")
         private String id;
+        @Column
         private String title;
+        @Column
         private String time;
+        @Column
         private String rectime;
+        @Column
         private long uts;
+        @Column
+        @SerializedName("feed_title")
         private String feed_title;
+        @Column
         private String img;
+        @Column
         private String abs;
+        @Column
         private int cmt;
+        @Column
         private int st;
+        @Column
         private int go;
 
-        public String getId() {
+        @Override
+        public ArticlesBean clone() {
+            try {
+                return (ArticlesBean) super.clone();
+            } catch (CloneNotSupportedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+        public String getArticleUrl() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setArticleUrl(String id) {
             this.id = id;
         }
 

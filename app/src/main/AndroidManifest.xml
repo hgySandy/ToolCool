@@ -22,6 +22,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
         <!-- 创建名为mydata.db的数据库 -->
         <meta-data
             android:name="AA_DB_NAME"
@@ -29,13 +30,12 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
-        <!---->
+        <!--  -->
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask"
-
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,16 +47,18 @@
             android:name=".CommonActivity"
             android:windowSoftInputMode="adjustPan" />
 
-        <!--第三方分享-->
+        <!-- 第三方分享 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="adjustPan|adjustResize">
+
             <!-- QQ和QQ空间分享 QQ登录的回调必须要配置的 -->
             <intent-filter>
                 <data android:scheme="tencent100371282" />
+
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -66,11 +68,11 @@
             <!-- 新浪微博客户端分享回调必须配置 -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
+        <activity android:name=".ImageActivity"></activity>
     </application>
 
 </manifest>

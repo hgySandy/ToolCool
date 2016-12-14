@@ -98,7 +98,10 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder!=null){
+            unbinder.unbind();
+
+        }
     }
 
 
@@ -159,10 +162,10 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
             case my_daidu:
                 break;
             case my_collect:
-                Toast.makeText(getActivity(), "点击收藏", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getActivity(), CommonActivity.class);
-//                intent.putExtra("type", TKContants.Type.COLLECT);
-//                startActivity(intent);
+//                Toast.makeText(getActivity(), "点击收藏", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), CommonActivity.class);
+                intent.putExtra("type", TKContants.Type.COLLECT);
+                startActivity(intent);
                 break;
 
             default:

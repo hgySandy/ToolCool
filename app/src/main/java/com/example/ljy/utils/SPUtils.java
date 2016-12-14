@@ -5,6 +5,26 @@ import android.content.SharedPreferences;
 
 public class SPUtils {
 
+
+	/**
+	 * @param activity
+	 * @param size 0-4对应五档字号
+ 	 */
+	public static void saveTextSize(Activity activity,int size){
+		SharedPreferences myConfig=activity.getSharedPreferences(TKContants.Name.SP_FILE_NAME,activity.MODE_PRIVATE);
+		myConfig.edit().putInt("textSize",size).commit();
+	}
+
+    /**
+     * @param activity
+     * @return 返回字号 默认为2档
+     */
+    public static int getTextSize(Activity activity){
+		SharedPreferences myConfig=activity.getSharedPreferences(TKContants.Name.SP_FILE_NAME,activity.MODE_PRIVATE);
+        int textSize = myConfig.getInt("textSize", 2);
+        return textSize;
+	}
+
 	/**保存日夜间模式到本地
 	 * @param activity
 	 * @param isNight

@@ -82,6 +82,16 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         Log.e("Mainactivity", "onResume");
+
+        setSelectItem();
+        //设置显示页面
+        showFragMemt(showFragmentId);
+        //设置导航栏头像和名称
+        initNavHead();
+
+    }
+
+    private void setSelectItem() {
         //设置默认选中第一项：比较麻烦
         // 先将整个menu设置成不可选中，再设置第一行可选中
         //再设置选中第一行
@@ -89,12 +99,8 @@ public class MainActivity extends AppCompatActivity
         navView.getMenu().setGroupCheckable(R.id.nav_select, false, false);
         navView.getMenu().getItem(0).setCheckable(true);
         navView.setCheckedItem(showFragmentId);//初始化默认选中页面
-        //设置显示页面
-        showFragMemt(showFragmentId);
-        //设置导航栏头像和名称
-        initNavHead();
-
     }
+
     private void initUI() {
         /*******1.沉浸式状态栏*********/
         initSystembarTint();
@@ -122,14 +128,18 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     * 初始化导航栏头像，日夜间模式
+     */
     private void initNavHead() {
-
+        //navigation头像日夜间模式显示背景
         boolean nightMode = SPUtils.isNightMode(this);
         if (nightMode) {
             headerView.setBackgroundColor(bgnavgation);
         }
         weibo = ShareSDK.getPlatform(this, SinaWeibo.NAME);
         String token = weibo.getDb().getToken();
+
         //设置头部点击事件 判断是否登录 进行跳转
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +158,7 @@ public class MainActivity extends AppCompatActivity
         String userIcon = weibo.getDb().getUserIcon();
         String username = weibo.getDb().getUserName();
 
+        //根据是否有token设置显示头像
         if (!token.equals("")) {
             UILUtils.displayImage(userIcon, headimg);
             tvName.setText(username);
@@ -231,66 +242,30 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
         /*******图片设置state_checked*****/
         // Handle navigation view item clicks here.
         clickId = item.getItemId();
-        item.setCheckable(true);
-//        Log.e("点击了item", item.getItemId() + "");
-//        Bundle bundle = new Bundle();
-//        Fragment fragment = null;
 
         switch (clickId) {
             default:
+                //设置可以checkable选项，改变颜色
+                item.setCheckable(true);
+                //显示fragment
                 showFragMemt(clickId);
                 break;
-//            case R.id.nav_home:
-//                supportActionBar.setTitle("首页");
-//                fragment = new ArticleFragment();
-//                showFragMemt(fragment);
-//                break;
-//            case R.id.nav_site:
-//                supportActionBar.setTitle("站点");
-//                bundle.putString("url", TKContants.Url.WEBSITE);
-//                fragment = new SiteFragment();
-//                fragment.setArguments(bundle);
-//                showFragMemt(fragment);
-//                break;
-//            case R.id.nav_topic:
-//                supportActionBar.setTitle("主题");
-//                bundle.putString("url", TKContants.Url.TOPIC);
-//                fragment = new SiteFragment();
-//                fragment.setArguments(bundle);
-//                showFragMemt(fragment);
-//                break;
-//            case R.id.nav_weekly:
-//                supportActionBar.setTitle("周刊");
-//                bundle.putString("url", TKContants.Url.WEEKLY);
-//                fragment = new WeekFragment();
-//                fragment.setArguments(bundle);
-//                showFragMemt(fragment);
-//                break;
-//            case R.id.nav_mine:
-//                supportActionBar.setTitle("我的推酷");
-//                fragment = new MineFragment();
-//                showFragMemt(fragment);
-//                break;
-            case R.id.nav_dayNight_mode:
+            case R.id.nav_dayNight_mode://切换日夜间模式
                 boolean isNight = SPUtils.isNightMode(MainActivity.this);
                 if (isNight) {
                     DayNightMode.setDayNightMode(MainActivity.this, false);
-//                Log.e("" + isNight, item.getTitle().toString());
 
                 } else {
                     DayNightMode.setDayNightMode(MainActivity.this, true);
-//                Log.e("" + isNight, item.getTitle().toString());
                 }
                 break;
             case R.id.nav_offline_down:
-
                 Toast.makeText(MainActivity.this, "离线下载", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_setting:
+            case R.id.nav_setting://跳转设置页面
                 Intent intent = new Intent(this, CommonActivity.class);
                 intent.putExtra("type", TKContants.Type.ABOUT_SETTING);
                 startActivity(intent);

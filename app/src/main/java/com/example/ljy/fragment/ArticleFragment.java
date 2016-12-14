@@ -64,14 +64,17 @@ public class ArticleFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("ArticleFragment","onDestroy");
-        unbinder.unbind();
+        if (unbinder!=null){
+            unbinder.unbind();
+
+        }
     }
 
 
     private void initUI() {
         //设置viewpager内容
         viewpagerContext.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
+
         //设置smartindiactor对应的viewpager
         smarttab.setViewPager(viewpagerContext);
 
@@ -125,7 +128,6 @@ public class ArticleFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), CommonActivity.class);
                 intent.putExtra("type", TKContants.Type.SEARCH);
                 startActivity(intent);
-                Toast.makeText(getActivity(), "back", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

@@ -1,0 +1,47 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.z_tuiku.DetailActivity" >
+
+    <item
+        android:id="@+id/action_share_main"
+        android:icon="@drawable/abc_ic_menu_share_mtrl_alpha"
+        android:title="@string/action_bar_search"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_pinglun_main"
+        android:icon="@drawable/pinglun"
+        android:title="@string/action_bar_search"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/articledetail_setting"
+        android:orderInCategory="100"
+        android:title="设置"
+        app:showAsAction="never">
+        <item
+            android:id="@+id/item0"
+            android:title="添加待读"/>
+        <item
+            android:id="@+id/item1"
+            android:title="添加收藏"/>
+        <item
+            android:id="@+id/item2"
+            android:title="调整字号"/>
+        <item
+            android:id="@+id/item3"
+            android:title="背景设置"/>
+        <item
+            android:id="@+id/item4"
+            android:title="打开翻页"/>
+        <item
+            android:id="@+id/item5"
+            android:title="文章纠错"/>
+        <item
+            android:id="@+id/item6"
+            android:title="查看原文"/>
+        <item
+            android:id="@+id/item7"
+            android:title="复制链接"/>
+    </item>
+
+</menu>

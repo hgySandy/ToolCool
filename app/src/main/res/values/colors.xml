@@ -13,6 +13,8 @@
     <color name="tv_title_day">#000000</color>
 
 
+
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -24,6 +26,7 @@
     <color name="color_btn_tuijian_login">#0aa284</color>
 
     <color name="bg_line">#dddddd</color>
+    <color name="tvcolor_detail_foot">#666666</color>
 
     <!--<color name="color"-->
 
