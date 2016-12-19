@@ -44,7 +44,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("ArticleFragment","onCreate");
+//        Log.e("ArticleFragment","onCreate");
         // 设置toolbar显示当前fragment的菜单
         setHasOptionsMenu(true);
     }
@@ -52,7 +52,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("ArticleFragment","onCreateView");
+//        Log.e("ArticleFragment","onCreateView");
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_article, null);
             unbinder = ButterKnife.bind(this, view);
@@ -77,11 +77,12 @@ public class ArticleFragment extends Fragment {
 
         //设置smartindiactor对应的viewpager
         smarttab.setViewPager(viewpagerContext);
+//        viewpagerContext .setOffscreenPageLimit(7);
 
 
     }
     //用fragmentStatePagerAdapter 适用5个及以上的fragment,保存前后一个以及自己三个对象，超出的话会destroy。
-    private final class MyPagerAdapter extends FragmentPagerAdapter {
+    private final class MyPagerAdapter extends FragmentStatePagerAdapter {
         public CharSequence getPageTitle(int position) {
             return title[position];
         }
@@ -100,11 +101,16 @@ public class ArticleFragment extends Fragment {
         public Fragment getItem(int position) {
             Log.e("Fragment",""+position);
             ArticleContextFragment articleContextFragment=new ArticleContextFragment();
-            Log.e("articleContextFragment",articleContextFragment.toString());
+//            Log.e("articleContextFragment",articleContextFragment.toString());
             Bundle args = new Bundle();
             args.putInt("position", position);
             articleContextFragment.setArguments(args);
             return articleContextFragment;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            super.destroyItem(container, position, object);
         }
     }
 

@@ -32,7 +32,7 @@ public class ImageLoadUtils {
 		if (hascache || (isOnlyWifi && isWifi) || !isOnlyWifi) {
 			result = hascache || (isOnlyWifi && isWifi) || !isOnlyWifi;
 //			Log.e("result", "" + result);
-			UILUtils.displayImage(imgurl, imgview);
+			UILUtils.displayImageNoAnim(imgurl, imgview);
 		}
 	}
 

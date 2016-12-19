@@ -122,6 +122,7 @@ public final class TKContants {
 		public static final int  MORE_SETTING=8;
 		public static final int YIJIANFANKUI=9;
 		public static final int ACCOUNT_INFO =10;
+		public static final int TOP_SITE=11;
 	}
 
 	public static final class Key {

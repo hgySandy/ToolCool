@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.android.volley.VolleyError;
@@ -77,6 +79,7 @@ public class ArticleContextFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         initBundleArg();
+//        Log.e("articleContextFragment","onCreateView");
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_article_context, container, false);
             unbinder = ButterKnife.bind(this, view);
@@ -87,14 +90,15 @@ public class ArticleContextFragment extends Fragment {
                 initData();
             }
         }
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (collect!=null)
-        initCollect();
+        if (collect != null)
+            initCollect();
 
     }
 
@@ -103,13 +107,13 @@ public class ArticleContextFragment extends Fragment {
             if (tabposition == 1) {//主题
                 topicsAdapter = new TopicsAdapter(getActivity(), R.layout.item_search_result, searchTopics);
                 listviewArticleContext.setAdapter(topicsAdapter);
-            }
-            else {//站点
+            } else {//站点
                 sitesAdapter = new SitesAdapter(getActivity(), R.layout.item_search_result, searchSites);
                 listviewArticleContext.setAdapter(sitesAdapter);
             }
         } else {//文章
             articleDataAdapter = new ArticleDataAdapter(getActivity(), R.layout.item_list_article_context, articles);
+//            articleDataAdapter=new ArticleDataAdapter();
             listviewArticleContext.setAdapter(articleDataAdapter);
         }
 
@@ -176,7 +180,7 @@ public class ArticleContextFragment extends Fragment {
                     ArticleContextBean articleTuijian = GsonUtils.parseJSON(arg0, ArticleContextBean.class);
                     articles.clear();
                     articles.addAll(articleTuijian.getArticles());
-//                    Log.e("article",articles.toString());
+                    Log.e("article", articles.size()+"");
                     articleDataAdapter.notifyDataSetChanged();
                 }
 
@@ -205,6 +209,38 @@ public class ArticleContextFragment extends Fragment {
         startActivity(intent);
     }
 
+//    private class ArticleDataAdapter extends BaseAdapter{
+//
+//        @Override
+//        public int getCount() {
+//            return articles.size();
+//        }
+//
+//        @Override
+//        public Object getItem(int position) {
+//            return null;
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            View view;
+//            view= getActivity().getLayoutInflater().inflate(R.layout.item_list_article_context, null);
+//            TextView tvTitle = (TextView) view.findViewById(R.id.tv_article_item_title);
+//            TextView subTitle = (TextView) view.findViewById(R.id.tv_article_item_subtitle);
+//            ImageView img = (ImageView) view.findViewById(R.id.img_article_item);
+//            tvTitle.setText(articles.get(position).getTitle());
+//            subTitle.setText(articles.get(position).getFeed_title());
+//            ImageLoadUtils.displayImage(getActivity(),articles.get(position).getImg(),img);
+//            Log.e("ArticleDataAdapter","convert"+position);
+//            Log.e("ArticleDataAdapter",articles.get(position).getTitle());
+//            return view;
+//        }
+//    }
 
     private class ArticleDataAdapter extends CommonAdapter<ArticlesBean> {
 
@@ -220,6 +256,9 @@ public class ArticleContextFragment extends Fragment {
             viewHolder.setText(R.id.tv_article_item_subtitle, item.getFeed_title() + "  " + item.getTime());
             ImageView img_item = viewHolder.getView(R.id.img_article_item);
             ImageLoadUtils.displayImage(getActivity(), item.getImg(), img_item);
+            Log.e("ArticleDataAdapter",viewHolder.toString());
+            Log.e("ArticleDataAdapter","convert"+position);
+            Log.e("ArticleDataAdapter",item.getTitle());
             RippleView rippleView = viewHolder.getView(R.id.ripple_article_item_list_context);
             rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
                 @Override
@@ -265,6 +304,7 @@ public class ArticleContextFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+//        articles.clear();
         super.onDestroyView();
 //        Log.e("ArticleContextFragment","onDestroyView"+tabposition);
 
@@ -272,7 +312,7 @@ public class ArticleContextFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (unbinder!=null){
+        if (unbinder != null) {
             unbinder.unbind();
 
         }

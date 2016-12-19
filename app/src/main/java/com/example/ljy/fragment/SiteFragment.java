@@ -1,6 +1,7 @@
 package com.example.ljy.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,8 +17,11 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.example.ljy.model.SiteContextBean;
+import com.example.ljy.model.SiteContextBean.ItemsBeanX;
+import com.example.ljy.toolcool2.CommonActivity;
 import com.example.ljy.toolcool2.R;
 import com.example.ljy.utils.ApiClient;
+import com.example.ljy.utils.TKContants;
 import com.xinbo.utils.GsonUtils;
 import com.xinbo.utils.ResponseListener;
 import com.xinbo.utils.UILUtils;
@@ -36,7 +40,7 @@ public class SiteFragment extends Fragment {
 
     @BindView(R.id.expandleLV_site)
     ExpandableListView expandleLVSite;
-    private List<SiteContextBean.ItemsBeanX> items = new ArrayList<>();
+    private List<ItemsBeanX> items = new ArrayList<>();
     private MyExpandableAdapter myExpandableAdapter;
     private String url;
     private Unbinder unbinder;
@@ -78,7 +82,6 @@ public class SiteFragment extends Fragment {
         // 清楚之前的menu
         menu.clear();
         // 设置fragment菜单
-
         inflater.inflate(R.menu.menu_site, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -86,8 +89,19 @@ public class SiteFragment extends Fragment {
     private void initUI(View view) {
         unbinder = ButterKnife.bind(this, view);
         myExpandableAdapter = new MyExpandableAdapter();
-        expandleLVSite.setAdapter(myExpandableAdapter);
 
+        expandleLVSite.setAdapter(myExpandableAdapter);
+        expandleLVSite.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent(getActivity(), CommonActivity.class);
+                intent.putExtra("type", TKContants.Type.TOP_SITE);
+                //TODO
+                items.get(groupPosition).getItems().get(childPosition);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     private void initData() {

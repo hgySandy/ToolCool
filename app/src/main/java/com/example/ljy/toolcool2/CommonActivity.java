@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.ljy.fragment.ArticleDetailFragment;
+import com.example.ljy.fragment.BlankFragment;
 import com.example.ljy.fragment.UpdateLogFragment;
 import com.example.ljy.subFragment.AboutUsFragment;
 import com.example.ljy.subFragment.AccountFragment;
@@ -106,12 +107,10 @@ public class CommonActivity extends AppCompatActivity {
                             .setContentTitle("点击更多可以添加字体，添加待读等.").build();
                     supportActionBar.setTitle("详情");
                     SPUtils.setNoFistToDetail(CommonActivity.this);
-
                 }
 
                 break;
-            case TKContants.Type.SEARCH:
-//                fragment=new BlankFragment();
+            case TKContants.Type.SEARCH://搜索页面
                 fragment = new SearchFragment();
                 supportActionBar.setTitle("common");
                 break;
@@ -149,8 +148,11 @@ public class CommonActivity extends AppCompatActivity {
                 break;
             case TKContants.Type.ACCOUNT_INFO:
                 fragment=new AccountFragment();
-
                 supportActionBar.setTitle("账号信息");
+                break;
+            case TKContants.Type.TOP_SITE:
+                fragment=new BlankFragment();
+                supportActionBar.setTitle("blank");
                 break;
 
             default:
