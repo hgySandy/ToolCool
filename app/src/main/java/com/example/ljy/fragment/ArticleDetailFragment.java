@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,6 +49,7 @@ import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,6 +78,8 @@ public class ArticleDetailFragment extends Fragment {
     private SiteBean site;
     private List<TopicsBean> topics = new ArrayList<>();
     private boolean nightMode;
+    private String title;
+    private String img;
     //    private String content;
 
     //    // public static final int TYPE = TKContants.Type.DETAIL_ARTICL_FRAGMENT;
@@ -103,7 +107,7 @@ public class ArticleDetailFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (unbinder!=null){
+        if (unbinder != null) {
             unbinder.unbind();
 
         }
@@ -136,10 +140,8 @@ public class ArticleDetailFragment extends Fragment {
     }
 
     private void initData() {
-        // articleId = getActivity().getIntent().getStringExtra("articleId");
-        ArticlesBean collectArticle = (ArticlesBean) getActivity().getIntent()
-                .getSerializableExtra("collectarticle");
-        articleId = collectArticle.getArticleUrl();
+        //初始化对象
+        initCollectarticle();
         // Log.e("articleId", articleId);
         ApiClient.getArticleDetail(getActivity(), articleId, new ResponseListener() {
 
@@ -149,7 +151,8 @@ public class ArticleDetailFragment extends Fragment {
                 /*****************/
                 /**** 1.初始化head **/
                 /*****************/
-                String title = detail.getArticle().getTitle();
+                title = detail.getArticle().getTitle();
+                img = detail.getArticle().getImg();
                 String feedTitle = detail.getArticle().getFeed_title();
                 String time = detail.getArticle().getTime();
                 mtv_title.setText(title);
@@ -182,6 +185,26 @@ public class ArticleDetailFragment extends Fragment {
             }
         });
 
+    }
+
+    private void initCollectarticle() {
+        ArticlesBean intentcollectarticle = (ArticlesBean) getActivity().getIntent().getSerializableExtra("collectarticle");
+
+        if (intentcollectarticle == null) {
+            Log.e("initCollectarticle", "empty");
+            Intent intent = getActivity().getIntent();
+            articleId = intent.getStringExtra("urlID");
+            String collectTitle = intent.getStringExtra("collecttitle");
+            collectarticle = new ArticlesBean();
+            collectarticle.setTitle(collectTitle);
+            collectarticle.setArticleUrl(articleId);
+            collectarticle.setFeed_title("");
+            collectarticle.setTime("");
+        } else {
+            collectarticle = intentcollectarticle;
+            articleId = collectarticle.getArticleUrl();
+
+        }
     }
 
 //    // 图片大小自适应。
@@ -272,6 +295,7 @@ public class ArticleDetailFragment extends Fragment {
 
         /***** 收藏 ********/
         MenuItem item = menu.findItem(R.id.item1);
+//        initCollectarticle();
         boolean isCollect = SQLUtils.isCollect(getActivity(), collectarticle);
         if (isCollect) {
             item.setTitle("取消收藏");
@@ -282,7 +306,7 @@ public class ArticleDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Log.e("item", item.getItemId() + "");
         switch (item.getItemId()) {
             case R.id.item0:
                 Toast.makeText(getActivity(), item.getTitle(), Toast.LENGTH_SHORT).show();
@@ -307,6 +331,32 @@ public class ArticleDetailFragment extends Fragment {
                 break;
             case R.id.item4:
                 Toast.makeText(getActivity(), item.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_share_main:
+                OnekeyShare oks = new OnekeyShare();
+                //关闭sso授权
+                oks.disableSSOWhenAuthorize();
+                // title标题，印象笔记、邮箱、信息、微信、人人网、QQ和QQ空间使用
+//                oks.setTitle("标题");
+                // titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
+//                oks.setTitleUrl("http://sharesdk.cn");
+                // text是分享文本，所有平台都需要这个字段
+                oks.setText(title);
+                //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+//                oks.setImageUrl(img);
+                // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+                //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+                // url仅在微信（包括好友和朋友圈）中使用
+//                oks.setUrl("http://sharesdk.cn");
+                // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+//                oks.setComment("我是测试评论文本");
+                // site是分享此内容的网站名称，仅在QQ空间使用
+//                oks.setSite("ShareSDK");
+                // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+//                oks.setSiteUrl("http://sharesdk.cn");
+                // 启动分享GUI
+                oks.show(getActivity());
+
                 break;
 
             default:

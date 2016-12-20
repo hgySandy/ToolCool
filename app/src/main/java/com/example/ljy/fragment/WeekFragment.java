@@ -1,6 +1,7 @@
 package com.example.ljy.fragment;
 
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -17,10 +18,13 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andexert.library.RippleView;
 import com.android.volley.VolleyError;
 import com.example.ljy.model.WeekContextBean;
+import com.example.ljy.toolcool2.CommonActivity;
 import com.example.ljy.toolcool2.R;
 import com.example.ljy.utils.ApiClient;
+import com.example.ljy.utils.TKContants;
 import com.xinbo.utils.GsonUtils;
 import com.xinbo.utils.ResponseListener;
 
@@ -84,33 +88,30 @@ public class WeekFragment extends Fragment {
     private void initUI(View view) {
         // Log.e("view", ""+view);
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandleLV_weekly);
+        expandableListView.setGroupIndicator(null);
         myExpandableAdapter = new MyExpandableAdapter();
         items.clear();//清空items内的数据，否则第二次进入站点会报错
         expandableListView.setAdapter(myExpandableAdapter);
+        //展开不能收缩
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-
-
                 return true;
             }
         });
+
     }
 
     private void initData() {
-        url = getArguments().getString("url");
-        Log.e("url", url);
-        ApiClient.getWebsite(getActivity(), url, new ResponseListener() {
+//        url = getArguments().getString("url");
+        ApiClient.getWeekly(getActivity(), new ResponseListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
             @Override
             public void onResponse(String jsondata) {
-                Log.e("site:onResponse", jsondata);
                 WeekContextBean weekdata = GsonUtils.parseJSON(jsondata, WeekContextBean.class);
                 items = weekdata.getItems();
                 myExpandableAdapter.notifyDataSetChanged();
-
                 int count = expandableListView.getCount();
                 for (int i = 0; i < count; i++) {
                     expandableListView.expandGroup(i, false);
@@ -121,7 +122,6 @@ public class WeekFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError arg0) {
-                Log.e("site:onErrorResponse", "" + arg0);
 
             }
         });
@@ -132,14 +132,11 @@ public class WeekFragment extends Fragment {
 
         @Override
         public int getGroupCount() {
-            Log.e("WeeklyFragment", "getGroupCount" + items.size());
             return items.size();
         }
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            Log.e("WeeklyFragment", "groupPosition" + groupPosition);
-            //TODO Auto-generated method stub
             return items.get(groupPosition).getItems().size();
         }
 
@@ -148,20 +145,41 @@ public class WeekFragment extends Fragment {
             View view = getActivity().getLayoutInflater().inflate(R.layout.item_week_list, null);
             TextView textView = (TextView) view.findViewById(R.id.tv_item_weekly_list);
             textView.setText(items.get(groupPosition).getName());
-            Log.e("getGroupView", " " + groupPosition);
             return view;
         }
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
                                  ViewGroup parent) {
-            View view = getActivity().getLayoutInflater().inflate(R.layout.item_week_list_sub, null);
+            View view;
+            if (convertView!=null){
+                view=convertView;
+            }else {
+                view = getActivity().getLayoutInflater().inflate(R.layout.item_week_list_sub, null);
+            }
+            String childID = items.get(groupPosition).getItems().get(childPosition).getId();
+            String parentTitle = items.get(groupPosition).getName();
+            String childTitle = items.get(groupPosition).getItems().get(childPosition).getTitle();
+            Long time = items.get(groupPosition).getItems().get(childPosition).getTime();
+
+            RippleView rippleView = (RippleView) view.findViewById(R.id.ripple_week_item_list_context);
+            rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+                @Override
+                public void onComplete(RippleView rippleView) {
+                    //跳转周刊详情页面
+
+                    Intent intent = new Intent(getActivity(), CommonActivity.class);
+                    intent.putExtra("type", TKContants.Type.DETAIL_WEEKLY_FRAGMENT);
+                    intent.putExtra("title", parentTitle+"-"+childTitle);
+                    intent.putExtra("id",childID);
+                    startActivity(intent);
+                }
+            });
+            //有时间做一下优化
             // 设置显示内容
             TextView tv_name = (TextView) view.findViewById(R.id.tv_item_weekly_list_name);
             TextView tv_time = (TextView) view.findViewById(R.id.tv_item_weekly_list_time);
-            tv_name.setText(items.get(groupPosition).getItems().get(childPosition).getTitle());
-            Long time = items.get(groupPosition).getItems().get(childPosition).getTime();
-
+            tv_name.setText(childTitle);
             String datatime = getDateTimeFromMillisecond(time);
 
             tv_time.setText(datatime);

@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -202,7 +204,7 @@ public class SearchFragment extends Fragment {
 
     // 用fragmentStatePagerAdapter
     // 适用5个及以上的fragment，创建后的fragmen会ondestroyview,但是不会销毁。
-    private final class SearchResultAdapter extends FragmentPagerAdapter {
+    private final class SearchResultAdapter extends FragmentStatePagerAdapter {
         public CharSequence getPageTitle(int position) {
             return title[position];
         }

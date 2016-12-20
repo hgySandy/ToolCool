@@ -158,8 +158,9 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final int my_daidu = 0;
         final int my_collect = 1;
+        final int my_tongzhi =3;
         switch (position) {
-            case my_daidu:
+            case my_tongzhi:
                 break;
             case my_collect:
 //                Toast.makeText(getActivity(), "点击收藏", Toast.LENGTH_SHORT).show();
@@ -169,6 +170,10 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
                 break;
 
             default:
+                Intent intent2 = new Intent(getActivity(), CommonActivity.class);
+                intent2.putExtra("type", TKContants.Type.COLLECT);
+                startActivity(intent2);
+
                 break;
         }
 

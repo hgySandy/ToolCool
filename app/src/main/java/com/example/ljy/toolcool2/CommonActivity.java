@@ -2,8 +2,6 @@ package com.example.ljy.toolcool2;
 
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,8 +14,8 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.ljy.fragment.ArticleContextFragment;
 import com.example.ljy.fragment.ArticleDetailFragment;
-import com.example.ljy.fragment.BlankFragment;
 import com.example.ljy.fragment.UpdateLogFragment;
 import com.example.ljy.subFragment.AboutUsFragment;
 import com.example.ljy.subFragment.AccountFragment;
@@ -27,11 +25,11 @@ import com.example.ljy.subFragment.MoreSettingFragment;
 import com.example.ljy.subFragment.SearchFragment;
 import com.example.ljy.subFragment.SettingFragment;
 import com.example.ljy.subFragment.ShareSettingFragment;
+import com.example.ljy.subFragment.WeekDetailFragment;
 import com.example.ljy.subFragment.YijianFankuiFragment;
 import com.example.ljy.utils.DayNightMode;
 import com.example.ljy.utils.SPUtils;
 import com.example.ljy.utils.TKContants;
-import com.github.amlcurran.showcaseview.ShowcaseDrawer;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -150,11 +148,45 @@ public class CommonActivity extends AppCompatActivity {
                 fragment=new AccountFragment();
                 supportActionBar.setTitle("账号信息");
                 break;
-            case TKContants.Type.TOP_SITE:
-                fragment=new BlankFragment();
-                supportActionBar.setTitle("blank");
+            case TKContants.Type.DETAIL_SITE_FRAGMENT:
+                String title = getIntent().getStringExtra("title");
+                String id=getIntent().getStringExtra("id");
+                boolean iswebsite=getIntent().getBooleanExtra("iswebsite",false);
+                supportActionBar.setTitle(title);
+                fragment=new ArticleContextFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("iswebsite",iswebsite);
+                bundle.putString("id",id);
+                fragment.setArguments(bundle);
                 break;
-
+            case TKContants.Type.DETAIL_WEEKLY_FRAGMENT:
+                String weekTitle = getIntent().getStringExtra("title");
+                String weekID=getIntent().getStringExtra("id");
+                supportActionBar.setTitle(weekTitle);
+                fragment=new WeekDetailFragment();
+                Bundle weekBundle = new Bundle();
+                weekBundle.putString("id",weekID);
+                fragment.setArguments(weekBundle);
+                break;
+            case TKContants.Type.ARTICLE_TOPIC_CONTENT:
+                String topicTitle=getIntent().getStringExtra("topicTitle");
+                String topicID=getIntent().getStringExtra("id");
+                supportActionBar.setTitle(topicTitle);
+                fragment=new ArticleContextFragment();
+                Bundle args = new Bundle();
+                args.putString("id",topicID);
+                fragment.setArguments(args);
+                break;
+            case TKContants.Type.ARTICLE_SITE_CONTENT:
+                String siteTitle=getIntent().getStringExtra("siteTitle");
+                String siteID=getIntent().getStringExtra("id");
+                supportActionBar.setTitle(siteTitle);
+                fragment=new ArticleContextFragment();
+                Bundle args2 = new Bundle();
+                args2.putBoolean("iswebsite",true);
+                args2.putString("id",siteID);
+                fragment.setArguments(args2);
+                break;
             default:
                 break;
         }

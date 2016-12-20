@@ -11,7 +11,7 @@ import android.app.Activity;
 public class SQLUtils {
 
 	public static boolean isCollect(Activity activity, ArticlesBean collectarticle) {
-		collectarticle = (ArticlesBean) activity.getIntent().getSerializableExtra("collectarticle");
+//		collectarticle = (ArticlesBean) activity.getIntent().getSerializableExtra("collectarticle");
 		ArticlesBean queryArtcile = new Select().from(ArticlesBean.class)
 				.where("articleurl=?", collectarticle.getArticleUrl()).executeSingle();
 		boolean iscollect = false;
@@ -22,12 +22,12 @@ public class SQLUtils {
 	}
 
 	public static void cancleCollect(Activity activity,ArticlesBean collectarticle) {
-		collectarticle = (ArticlesBean) activity.getIntent().getSerializableExtra("collectarticle");
+//		collectarticle = (ArticlesBean) activity.getIntent().getSerializableExtra("collectarticle");
 		new Delete().from(ArticlesBean.class).where("articleurl=?", collectarticle.getArticleUrl())
 				.executeSingle();
 	}
 	public static void collect(Activity activity,ArticlesBean collectarticle){
-		collectarticle = (ArticlesBean) activity.getIntent().getSerializableExtra("collectarticle");
+//		collectarticle = (ArticlesBean) activity.getIntent().getSerializableExtra("collectarticle");
 		ArticlesBean collectarticle2 = collectarticle.clone();
 		collectarticle2.save();
 	}

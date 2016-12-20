@@ -289,6 +289,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_site:
                 supportActionBar.setTitle("站点");
+                bundle.putBoolean("iswebsite",true);
                 bundle.putString("url", TKContants.Url.WEBSITE);
                 fragment = new SiteFragment();
                 fragment.setArguments(bundle);
@@ -296,14 +297,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_topic:
                 supportActionBar.setTitle("主题");
                 bundle.putString("url", TKContants.Url.TOPIC);
+                bundle.putBoolean("iswebsite",false);
                 fragment = new SiteFragment();
                 fragment.setArguments(bundle);
                 break;
             case R.id.nav_weekly:
                 supportActionBar.setTitle("周刊");
-                bundle.putString("url", TKContants.Url.WEEKLY);
                 fragment = new WeekFragment();
-                fragment.setArguments(bundle);
                 break;
             case R.id.nav_mine:
                 supportActionBar.setTitle("我的推酷");

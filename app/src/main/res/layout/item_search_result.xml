@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.andexert.library.RippleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ripple_topic_item_search_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="3dp"
-    android:paddingBottom="3dp"
-     >
+    ripple:rv_color="#888888"
+    ripple:rv_rippleDuration="250"
+    ripple:rv_type="rectangle">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="3dp">
 
-    <ImageView
-        android:id="@+id/img_search_result_site_head"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_launcher"
-         />
+        <ImageView
+            android:id="@+id/img_search_result_site_head"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_launcher" />
 
-    <TextView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/tv_search_result_site_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="left"
-        android:text="abc"
-        android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_search_result_site_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="abc"
+            android:textSize="15sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:textSize="30sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="30sp" />
 
-</LinearLayout>
+    </LinearLayout>
+</com.andexert.library.RippleView>

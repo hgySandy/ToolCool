@@ -18,6 +18,9 @@ public class ApiClient
 	{
 		HTTPUtils.get(context, TKContants.Url.WEEKLY, listener);
 	}
+	public static void getWeeklyDetail(Context context,String id,ResponseListener listener){
+		HTTPUtils.get(context,String.format(TKContants.Url.WEEKLY_DETAIL_FORMAT,id),listener);
+	}
 	
 	public static void getSearchResult(Context context, int position, String keyword, ResponseListener listener)
 	{

@@ -6,12 +6,12 @@
     <item
         android:id="@+id/action_share_main"
         android:icon="@drawable/abc_ic_menu_share_mtrl_alpha"
-        android:title="@string/action_bar_search"
+        android:title="分享"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_pinglun_main"
         android:icon="@drawable/pinglun"
-        android:title="@string/action_bar_search"
+        android:title="评论"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/articledetail_setting"
