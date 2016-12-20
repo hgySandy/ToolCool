@@ -1,11 +1,23 @@
 [
     {
+        "merged": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_error.png",
+        "source": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_error.png"
+    },
+    {
+        "merged": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_empty.png",
+        "source": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_empty.png"
+    },
+    {
         "merged": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_empty.png",
         "source": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_empty.png"
     },
     {
         "merged": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_error.png",
         "source": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_error.png"
+    },
+    {
+        "merged": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_stub.png",
+        "source": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_stub.png"
     },
     {
         "merged": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_stub.png",

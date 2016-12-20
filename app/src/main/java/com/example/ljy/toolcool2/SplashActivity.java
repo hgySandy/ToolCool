@@ -24,6 +24,7 @@ import com.xinbo.utils.ResponseListener;
 import com.xinbo.utils.UILUtils;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -91,6 +92,7 @@ public class SplashActivity extends AppCompatActivity {
         String startImgUrl = sp.getString("startimgurl", TKContants.Name.SP_START_DEFAULT);
         if (!startImgUrl.equals(TKContants.Name.SP_START_DEFAULT)) {
             Log.e("startImgUrl", startImgUrl);
+
             // 更换图片需要服务器那边修改startImgUrl
             // 图片已经缓存了所以没有开启其他线程加载图片，直接从SD卡中（开启SD权限）/memory cache（没开SD权限）中读取
             UILUtils.displayImage(startImgUrl, imgSplashBackground);

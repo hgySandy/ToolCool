@@ -1,5 +1,13 @@
 [
     {
+        "merged": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\custom_notify.xml",
+        "source": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\layout\\custom_notify.xml"
+    },
+    {
+        "merged": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\custom_toast.xml",
+        "source": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\layout\\custom_toast.xml"
+    },
+    {
         "merged": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\custom_toast.xml",
         "source": "D:\\ASWorkSpace\\ToolCool2\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\layout\\custom_toast.xml"
     },

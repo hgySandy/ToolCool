@@ -64,5 +64,71 @@
                 }
             }
         ]
+    },
+    {
+        "outputFile": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 1080,
+                    "endColumn": 47,
+                    "endOffset": 1123
+                },
+                "from": {
+                    "file": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1080,
+                        "endColumn": 47,
+                        "endOffset": 1123
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 1128,
+                    "endLine": 21,
+                    "endColumn": 12,
+                    "endOffset": 1415
+                },
+                "from": {
+                    "file": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1128,
+                        "endLine": 21,
+                        "endColumn": 12,
+                        "endOffset": 1415
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1420,
+                    "endLine": 24,
+                    "endColumn": 12,
+                    "endOffset": 1575
+                },
+                "from": {
+                    "file": "D:\\ASWorkSpace\\ToolCool\\lib_yuchen0802_supportBmob\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1420,
+                        "endLine": 24,
+                        "endColumn": 12,
+                        "endOffset": 1575
+                    }
+                }
+            }
+        ]
     }
 ]

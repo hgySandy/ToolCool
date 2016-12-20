@@ -2,6 +2,7 @@ package com.example.ljy.toolcool2;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,6 +37,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.xinbo.utils.UILUtils;
 
 import butterknife.BindColor;
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.sharesdk.framework.Platform;
@@ -47,8 +49,6 @@ import cn.sharesdk.sina.weibo.SinaWeibo;
 //此优化的缺点：内存占用率高
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    @BindColor(R.color.bg_toolbar_night)
-    int bgnavgation;
     @BindView(R.id.toolbar_main)
     Toolbar toolbarMain;
     @BindView(R.id.nav_view)
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
         //navigation头像日夜间模式显示背景
         boolean nightMode = SPUtils.isNightMode(this);
         if (nightMode) {
-            headerView.setBackgroundColor(bgnavgation);
+                headerView.setBackgroundResource(R.drawable.left_head_2);
         }
         weibo = ShareSDK.getPlatform(this, SinaWeibo.NAME);
         String token = weibo.getDb().getToken();
