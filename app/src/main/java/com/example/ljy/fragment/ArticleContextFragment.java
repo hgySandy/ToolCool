@@ -9,12 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.andexert.library.RippleView;
 import com.android.volley.VolleyError;
@@ -64,6 +62,7 @@ public class ArticleContextFragment extends Fragment {
     private int tabposition;
     private String collect;
     private String searchcontext;
+    private String childID;
 
 
     private ArticleDataAdapter articleDataAdapter;
@@ -73,6 +72,7 @@ public class ArticleContextFragment extends Fragment {
     private List<TopicsBean> searchTopics = new ArrayList<>();
     private List<ItemsBean> searchSites = new ArrayList<>();
     View view;
+    private boolean iswebsite;
 
 
     @Override
@@ -123,6 +123,8 @@ public class ArticleContextFragment extends Fragment {
         collect = getArguments().getString("collect");
         tabposition = getArguments().getInt("position");
         searchcontext = getArguments().getString("search");
+        childID = getArguments().getString("id");
+        iswebsite = getArguments().getBoolean("iswebsite");
     }
 
     private void initSearchData() {
@@ -164,8 +166,30 @@ public class ArticleContextFragment extends Fragment {
         if (collect != null) {
             initCollect();
             return;
-
         }
+        if (childID != null) {
+
+
+            ApiClient.getWebsiteDetail(getActivity(), iswebsite, childID, new ResponseListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Log.e("getWebsiteDetail", "false");
+                }
+
+                @Override
+                public void onResponse(String s) {
+//                    Log.e("getWebsiteDetail","sucessful");
+                    ArticleContextBean articleTuijian = GsonUtils.parseJSON(s, ArticleContextBean.class);
+                    articles.clear();
+                    articles.addAll(articleTuijian.getArticles());
+                    Log.e("article", articles.size() + "");
+                    articleDataAdapter.notifyDataSetChanged();
+
+                }
+            });
+            return;
+        }
+
         /**判断是否登录再确定要不要加载Hot数据****/
         Platform weibo = ShareSDK.getPlatform(getContext(), SinaWeibo.NAME);
         String token = weibo.getDb().getToken();
@@ -180,7 +204,7 @@ public class ArticleContextFragment extends Fragment {
                     ArticleContextBean articleTuijian = GsonUtils.parseJSON(arg0, ArticleContextBean.class);
                     articles.clear();
                     articles.addAll(articleTuijian.getArticles());
-                    Log.e("article", articles.size()+"");
+                    Log.e("article", articles.size() + "");
                     articleDataAdapter.notifyDataSetChanged();
                 }
 
@@ -202,45 +226,12 @@ public class ArticleContextFragment extends Fragment {
 
     @OnClick(R.id.btn_tuijian_login)
     public void onClick() {
-        //TODO 登录
         Log.e("button", "点击了登录按钮");
         Intent intent = new Intent(getActivity(), CommonActivity.class);
         intent.putExtra("type", TKContants.Type.LOGIN);
         startActivity(intent);
     }
 
-//    private class ArticleDataAdapter extends BaseAdapter{
-//
-//        @Override
-//        public int getCount() {
-//            return articles.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return null;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return 0;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            View view;
-//            view= getActivity().getLayoutInflater().inflate(R.layout.item_list_article_context, null);
-//            TextView tvTitle = (TextView) view.findViewById(R.id.tv_article_item_title);
-//            TextView subTitle = (TextView) view.findViewById(R.id.tv_article_item_subtitle);
-//            ImageView img = (ImageView) view.findViewById(R.id.img_article_item);
-//            tvTitle.setText(articles.get(position).getTitle());
-//            subTitle.setText(articles.get(position).getFeed_title());
-//            ImageLoadUtils.displayImage(getActivity(),articles.get(position).getImg(),img);
-//            Log.e("ArticleDataAdapter","convert"+position);
-//            Log.e("ArticleDataAdapter",articles.get(position).getTitle());
-//            return view;
-//        }
-//    }
 
     private class ArticleDataAdapter extends CommonAdapter<ArticlesBean> {
 
@@ -255,20 +246,19 @@ public class ArticleContextFragment extends Fragment {
             viewHolder.setText(R.id.tv_article_item_title, item.getTitle());
             viewHolder.setText(R.id.tv_article_item_subtitle, item.getFeed_title() + "  " + item.getTime());
             ImageView img_item = viewHolder.getView(R.id.img_article_item);
-            ImageLoadUtils.displayImage(getActivity(), item.getImg(), img_item);
-            Log.e("ArticleDataAdapter",viewHolder.toString());
-            Log.e("ArticleDataAdapter","convert"+position);
-            Log.e("ArticleDataAdapter",item.getTitle());
+            if (item.getImg() != null){
+                ImageLoadUtils.displayImage(getActivity(), item.getImg(), img_item);
+            }
+//            Log.e("ArticleDataAdapter",viewHolder.toString());
+//            Log.e("ArticleDataAdapter","convert"+position);
+//            Log.e("ArticleDataAdapter",item.getTitle());
             RippleView rippleView = viewHolder.getView(R.id.ripple_article_item_list_context);
-            rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
-                @Override
-                public void onComplete(RippleView rippleView) {
-                    //todo 跳转详情页面
-                    Intent intent = new Intent(getActivity(), CommonActivity.class);
-                    intent.putExtra("collectarticle", articles.get(position));
-                    intent.putExtra("type", TKContants.Type.DETAIL_ARTICL_FRAGMENT);
-                    startActivity(intent);
-                }
+            rippleView.setOnRippleCompleteListener(rippleView1 -> {
+                //跳转详情页面
+                Intent intent = new Intent(getActivity(), CommonActivity.class);
+                intent.putExtra("collectarticle", articles.get(position));
+                intent.putExtra("type", TKContants.Type.DETAIL_ARTICL_FRAGMENT);
+                startActivity(intent);
             });
         }
     }
@@ -281,9 +271,22 @@ public class ArticleContextFragment extends Fragment {
 
         @Override
         protected void convert(ViewHolder viewHolder, TopicsBean item, int position) {
+            //设置显示
             viewHolder.setText(R.id.tv_search_result_site_name, item.getName());
             ImageView img = viewHolder.getView(R.id.img_search_result_site_head);
             UILUtils.displayCircleImage(item.getImage(), img);
+            //设置行点击事件
+            RippleView ripple = viewHolder.getView(R.id.ripple_topic_item_search_content);
+            ripple.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+                @Override
+                public void onComplete(RippleView rippleView) {
+                    Intent intent = new Intent(getActivity(), CommonActivity.class);
+                    intent.putExtra("topicTitle",item.getName());
+                    intent.putExtra("id", item.getId());
+                    intent.putExtra("type", TKContants.Type.ARTICLE_TOPIC_CONTENT);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -298,25 +301,26 @@ public class ArticleContextFragment extends Fragment {
             viewHolder.setText(R.id.tv_search_result_site_name, item.getName());
             ImageView img = viewHolder.getView(R.id.img_search_result_site_head);
             UILUtils.displayCircleImage(item.getImage(), img);
+            //设置行点击事件
+            RippleView ripple = viewHolder.getView(R.id.ripple_topic_item_search_content);
+            ripple.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+                @Override
+                public void onComplete(RippleView rippleView) {
+                    Intent intent = new Intent(getActivity(), CommonActivity.class);
+                    intent.putExtra("siteTitle",item.getName());
+                    intent.putExtra("id", item.getId());
+                    intent.putExtra("type", TKContants.Type.ARTICLE_SITE_CONTENT);
+                    startActivity(intent);
+                }
+            });
         }
-    }
-
-
-    @Override
-    public void onDestroyView() {
-//        articles.clear();
-        super.onDestroyView();
-//        Log.e("ArticleContextFragment","onDestroyView"+tabposition);
-
     }
 
     @Override
     public void onDestroy() {
         if (unbinder != null) {
             unbinder.unbind();
-
         }
         super.onDestroy();
-//        Log.e("ArticleContextFragment","onDestroy"+tabposition);
     }
 }

@@ -23,16 +23,16 @@ public final class TKContants {
 		public static final String SEARCH_WEBSITE = HOST + "/api/sites/search.json?kw=";
 		public static final String[] SEARCH_CATEGORYS = { SEARCH_ARTICLE, SEARCH_TOPIC, SEARCH_WEBSITE };
 		public static final String WEEKLY = HOST + "/api/mag/home.json";
+		public static final String WEEKLY_DETAIL_FORMAT=HOST+"/api/mag/detail.json?id=%s&type=2";
 
 		public static final String ARTICLE_DETAIL_FORMAT = HOST + "/api/articles/%s.json?need_image_meta=1&type=1";
-
 		public static final String START_PAGES = HOST + "/api/home/start_pages.json?type=0";
 		public static final String UPDATE_MSG=HOST+"/api/home/upgrade_info.json?week=1&&id=com.tuicool.activity";
 		public static final String UPGRADE_LOG = HOST + "/api/home/upgrade_logs.json";
 		public static final String WEBSITE = HOST + "/api/sites/my_with_dirs.json";
 		public static final String WEBSITE_DETAIL_FORMAT = HOST + "/api/sites/%s.json?pn=0&size=30&is_pad=1";
-		public static final String TOPIC = HOST + "/api/topics/my_with_dirs.json";
 
+		public static final String TOPIC = HOST + "/api/topics/my_with_dirs.json";
 		public static final String TOPIC_DETAIL_FORMAT = HOST
 				+ "/api/topics/%s.json?pn=0&lang=-1&st=0&size=30&is_pad=1";
 		/*
@@ -122,7 +122,10 @@ public final class TKContants {
 		public static final int  MORE_SETTING=8;
 		public static final int YIJIANFANKUI=9;
 		public static final int ACCOUNT_INFO =10;
-		public static final int TOP_SITE=11;
+		public static final int ARTICLE_TOPIC_CONTENT =11;
+		public static final int DETAIL_SITE_FRAGMENT = 12;
+		public static final int DETAIL_WEEKLY_FRAGMENT =13 ;
+		public static final int ARTICLE_SITE_CONTENT=14;
 	}
 
 	public static final class Key {

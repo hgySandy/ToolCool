@@ -2,12 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ljy.fragment.WeekFragment">
+    tools:context="com.example.ljy.subFragment.WeekDetailFragment">
 
     <ExpandableListView
-        android:id="@+id/expandleLV_weekly"
+        android:id="@+id/expandleLV_weekly_Detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 
 </FrameLayout>

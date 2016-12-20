@@ -15,6 +15,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.android.volley.VolleyError;
 import com.example.ljy.model.SiteContextBean;
 import com.example.ljy.model.SiteContextBean.ItemsBeanX;
@@ -91,17 +92,6 @@ public class SiteFragment extends Fragment {
         myExpandableAdapter = new MyExpandableAdapter();
 
         expandleLVSite.setAdapter(myExpandableAdapter);
-        expandleLVSite.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Intent intent = new Intent(getActivity(), CommonActivity.class);
-                intent.putExtra("type", TKContants.Type.TOP_SITE);
-                //TODO
-                items.get(groupPosition).getItems().get(childPosition);
-                startActivity(intent);
-                return false;
-            }
-        });
     }
 
     private void initData() {
@@ -151,12 +141,37 @@ public class SiteFragment extends Fragment {
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
                                  ViewGroup parent) {
-            View view = getActivity().getLayoutInflater().inflate(R.layout.item_site_list_sub, null);
+            View view;
+            if (convertView!=null){
+                view=convertView;
+            }else {
+                view = getActivity().getLayoutInflater().inflate(R.layout.item_site_list_sub, null);
+            }
+            //获取站点子页面点击事件
+            String childTitle = items.get(groupPosition).getItems().get(childPosition).getName();
+            String childImageUrl = items.get(groupPosition).getItems().get(childPosition).getImage();
+            String childId = items.get(groupPosition).getItems().get(childPosition).getId();
+
+            //设置点击跳转
+            RippleView ripple = (RippleView) view.findViewById(R.id.ripple_site_item_list_context);
+            ripple.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+                @Override
+                public void onComplete(RippleView rippleView) {
+                    //跳转站点详情页面
+                    Intent intent = new Intent(getActivity(), CommonActivity.class);
+                    intent.putExtra("type", TKContants.Type.DETAIL_SITE_FRAGMENT);
+                    intent.putExtra("title", childTitle);
+                    intent.putExtra("id",childId);
+                    boolean iswebsite = getArguments().getBoolean("iswebsite", false);
+                    intent.putExtra("iswebsite",iswebsite);
+                    startActivity(intent);
+                }
+            });
             // 设置显示内容和图片
             TextView textView = (TextView) view.findViewById(R.id.tv_item_site_list_name);
-            textView.setText(items.get(groupPosition).getItems().get(childPosition).getName());
+            textView.setText(childTitle);
             ImageView imageView = (ImageView) view.findViewById(R.id.img_item_site_list_head);
-            UILUtils.displayCircleImage(items.get(groupPosition).getItems().get(childPosition).getImage(), imageView);
+            UILUtils.displayCircleImage(childImageUrl, imageView);
             return view;
         }
 

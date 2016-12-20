@@ -17,6 +17,7 @@
         android:textColor="?attr/color_week_parent_tv_daynight" />
 
     <TextView
+        android:id="@+id/tv_item_weekly_list_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
